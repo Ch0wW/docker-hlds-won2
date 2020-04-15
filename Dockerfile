@@ -25,6 +25,8 @@ COPY patch/* ./
 COPY config/valve valve
 COPY config/cstrike cstrike
 
+RUN chmod +x hlds_run
+
 # Expose required default ports
 EXPOSE 27015
 EXPOSE 27015/udp
