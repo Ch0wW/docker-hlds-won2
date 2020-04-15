@@ -1,0 +1,4 @@
+game "Half-Life"
+mpentity "info_player_deathmatch"
+gamedll "dlls\metamod.dll"
+gamedll_linux "dlls/metamod_i386.so"

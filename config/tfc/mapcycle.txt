@@ -1,0 +1,28 @@
+// Instruction for using mapcycle.txt
+// No, you can't change maxplayers on the server, but you can skip maps that don't fit the current # of players
+// If no suitable match is found anywhere in your mapcycle file, then the server just moves to the next map in the file anyway.
+// Minplayers or maxplayers set to 0 mean don't restrict based on that parameter.  You don't have to include minplayers or maxplayers if you
+//  are not making a restriction.  They default to 0 if missing.
+// You can list a file twice in the rotation now
+// You can issue a command ( rather than setting key value pairs ) at the server console by bracketing it with a blank
+//  key value: e.g., \mycommand\\
+// minplayers and maxplayers are special tokens and are parsed and removed before the commands are executed
+// Commands are executed just after the changelevel command occurs.
+// Be sure to remove conflicting settings from any server.cfg or listenserver.cfg files you use since those values will stomp
+//  on the ones you set here
+// The double quotes are necessary
+// BTW, the old format will still work
+// Here's an example for the first map
+casbah  "\minplayers\1\maxplayers\32"
+flagrun
+avanti
+dustbowl
+warpath
+epicenter
+badlands
+crossover2
+2fort
+hunted
+cz2
+well
+rock2

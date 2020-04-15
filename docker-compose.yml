@@ -1,0 +1,14 @@
+version: "1.0"
+
+services:
+	hlds:
+		build:
+			context: .
+			dockerfile: Dockerfile
+		ports:
+			- 27015:27015
+			- 27015:27015/udp
+		environment:
+			- GAME="cstrike"
+			- MAP="de_dust2"
+			- MAXPLAYERS="32"

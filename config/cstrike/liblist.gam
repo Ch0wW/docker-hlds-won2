@@ -1,0 +1,24 @@
+game "Counter-Strike"
+url_info "www.counter-strike.net"
+url_dl ""
+version "1.5"
+size "184000000"
+svonly "0"
+cldll "1" 
+hlversion "1110"
+type "multiplayer_only"
+nomodels "1"
+nohimodel "1"
+mpentity "info_player_start"
+trainmap "tr_1"
+
+gamedll "dlls\metamod.dll"
+gamedll_linux "dlls/metamod_i386.so"
+
+//===============
+//OFFICIAL DLLs=
+//===============
+//
+//gamedll "dlls\mp.dll"
+//gamedll_linux "dlls/cs_i386.so"
+//-------------------------
