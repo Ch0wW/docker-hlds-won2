@@ -21,11 +21,17 @@ RUN wget -q -O - http://dl.4players.de/f0/4players/halflife/server/linux/hlds_l_
 WORKDIR /server/hlds_l/
 
 # 4) Install WON2Fixes and modified HLDS_RUN
+
+USER root
+
 COPY patch/* ./
 COPY config/valve valve
 COPY config/cstrike cstrike
 
+#Fix the rights...
 RUN chmod +x hlds_run
+
+USER hlds
 
 # Expose required default ports
 EXPOSE 27015
