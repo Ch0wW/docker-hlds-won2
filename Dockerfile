@@ -23,8 +23,7 @@ WORKDIR /server/hlds_l/
 USER root
 
 COPY patch/* ./
-COPY config/valve valve
-COPY config/cstrike cstrike
+COPY config/* ./
 RUN chmod +x hlds_run
 
 USER hlds
