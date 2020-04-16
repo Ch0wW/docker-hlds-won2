@@ -14,12 +14,7 @@ export LD_PRELOAD="./nowon.so ./hlds_20040707fix.so ./hlshield.so"
 init() {
 	# Initialises the various variables
 	# Set up the defaults
-	GAME="${GAME:-valve}"
-	PORT="${PORT:-27015}"
-	MAXPLAYERS="${MAXPLAYERS:-16}"
-	MAP="${MAP:-crossfire}"
-	OPTIONS="+port \"$PORT\" +maxplayers \"$MAXPLAYERS\" +map \"$MAP\""
-	PARMS="$PARMS"
+	GAME="valve"
 	DEBUG=""
 	RESTART="yes"
 	HL=./hlds_i486
@@ -137,9 +132,9 @@ init() {
 	fi
 
 	if test 0 -eq $PID_FILE_SET && test -n "$PID_FILE"; then
-		HL_CMD="$HL -game $GAME -noipx +sv_lan 1 $OPTIONS $PARAMS -pidfile $PID_FILE"
+		HL_CMD="$HL -noipx +sv_lan 1 $PARAMS -pidfile $PID_FILE"
 	else
-		HL_CMD="$HL -game $GAME -noipx +sv_lan 1 $OPTIONS $PARAMS"
+		HL_CMD="$HL -noipx +sv_lan 1 $PARAMS"
 	fi
 }
 

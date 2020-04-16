@@ -4,7 +4,6 @@ FROM i386/debian:jessie
 RUN apt-get update && apt-get install -y unzip wget
 
 # 2) Create user
-RUN echo "# ============ CREATE USER AND GROUP ============"
 RUN groupadd -r hlds
 RUN useradd --no-log-init --system --create-home --home-dir /server --gid hlds  hlds
 USER hlds
@@ -20,15 +19,12 @@ RUN wget -q -O - http://dl.4players.de/f0/4players/halflife/server/linux/hlds_l_
 
 WORKDIR /server/hlds_l/
 
-# 4) Install WON2Fixes and modified HLDS_RUN
-
+#Install WON2Fixes and modified HLDS_RUN
 USER root
 
 COPY patch/* ./
 COPY config/valve valve
 COPY config/cstrike cstrike
-
-#Fix the rights...
 RUN chmod +x hlds_run
 
 USER hlds
@@ -39,4 +35,6 @@ EXPOSE 27015/udp
 
 ENV TERM xterm
 
-CMD ["./hlds_run"]
+ENTRYPOINT ["./hlds_run"]
+
+CMD ["-game valve", "+map crossfire", "+maxplayers 16"]
