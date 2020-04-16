@@ -22,14 +22,10 @@ auth.won2.steamlessproject.nl:7002
 
 Master
 {
-	zvdk.nl:27010
 	master.won2.steamlessproject.nl:27010
-	master1.won2.steamlessproject.nl:27010
 	master4.won2.steamlessproject.nl:27010
 	master2.won2.steamlessproject.nl:27010
 	master3.won2.steamlessproject.nl:27010
-	master5.won2.steamlessproject.nl:27010
-	master6.won2.steamlessproject.nl:27010
 }
 
 ModServer
