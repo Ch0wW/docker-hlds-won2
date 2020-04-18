@@ -1,7 +1,7 @@
-FROM i386/debian:jessie
+FROM i386/debian:jessie-slim
 
 # 1) INSTALL BASICS
-RUN apt-get update && apt-get install -y unzip wget
+RUN apt-get update && apt-get install -y wget
 
 # 2) Create user
 RUN groupadd -r hlds
