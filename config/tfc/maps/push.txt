@@ -1,0 +1,13 @@
+Push - Football
+
+Objective: Grab the ball from the warehouse
+in the center of the field. Run it into the
+ENEMY base and place it on the raised square
+to score a goal.
+
+Scoring: 10 points per goal.
+
+Other Notes: Ball carriers drop the ball when
+they die. Dropped balls stay where they are.
+All players are reset whenever a goal
+is scored.

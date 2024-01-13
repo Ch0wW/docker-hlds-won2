@@ -1,0 +1,10 @@
+Mideast - Capture The Flag
+
+Objective: Steal the enemy flag from their flag
+room, and return it to your own. 
+
+Scoring: 10 points per Capture.
+
+Other Notes: Flag carriers drop the Flag when
+they die. Dropped flags return to their Base
+after 60 seconds.

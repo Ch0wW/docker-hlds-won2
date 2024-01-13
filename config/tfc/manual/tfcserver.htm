@@ -1,0 +1,568 @@
+<HTML>
+<HEAD>
+<TITLE>Team Fortress 1.5 Server Administrator Guide</TITLE>
+<STYLE TYPE="text/css">
+  body {
+    font-family : "Tahoma, Arial, Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+	color : #BBBBBB;
+    }
+
+  A:link {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+    font-weight : bold;
+    color : #CC6600;
+	text-decoration: none;
+    }
+
+  A:visited {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+    font-weight : bold;
+    color : #CC6600;
+	text-decoration: none;
+    }
+
+  A:hover {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+    font-weight : bold;
+    color : #FF9900;
+	text-decoration: none;
+    }
+
+  TD {
+    font-family : "Tahoma, Arial, Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+	color : #BBBBBB;
+    }
+
+  H3 {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 15pt;
+    fontsize : 16pt;
+    font-weight : bold;
+    color : #CC6600;
+	text-decoration: none;
+    }
+   H4 {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 11pt;
+    fontsize : 12pt;
+    font-weight : bold;
+    color : #CC6600;
+	text-decoration: none;
+    }
+   H5 {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 8pt;
+    fontsize : 9pt;
+    font-weight : normal;
+    color : #CC6600;
+	text-decoration: none;
+    }
+</STYLE>
+</HEAD>
+<BODY BGCOLOR="#000000">
+
+<P>
+If you want to run a TF server, you've come to the right place. The following document will describe what you need to run a TF server, how to start
+it, and what commands you need to know to customize it. If you've got a TF server running already, you probably want to skip straight to the 
+<A HREF="#advanced">Advanced Customization</A> section to find further information on customizing it. If you want to know how to set your server 
+up for a Clan Battle, skip straight to the <A HREF="#clan">Clan Battles</A> section.<BR>
+<P>
+
+<A NAME="starting"><H3>What do you need to run a Team Fortress 1.5 Server?</H3></A>
+
+<blockquote>
+  <p><img SRC="bullet.gif" WIDTH="10" height="13"> High Bandwidth Connection
+</blockquote>
+<blockquote>
+  <blockquote>
+    <p>The most important factor in how well your server will run is how fast your connection to the Internet is.  When people connect to your server 
+	to play, you have to share that bandwidth with them.  At the very minimum you need an ISDN connection (256 kb/s or more).  Ideally a server will be 
+	running through a DSL or T1 connection.  If you run a server and the bandwidth you are providing to the people that connect to you isn't enough, they are 
+	going to experience lag because your machine can't send them enough information. </p>
+  </blockquote>
+</blockquote>
+
+<blockquote>
+  <p><img SRC="bullet.gif" WIDTH="10" height="13"> CPU Power
+</blockquote>
+<blockquote>
+  <blockquote>
+    <p>Your computer is going to be doing a lot of work when people connect to it, and the amount of work that it needs to do increases dramatically as more 
+	people connect to your game.  To be able to service a full game, you are going to want at least a Pentium II 266, but the more CPU power the better. </p>
+  </blockquote>
+</blockquote>
+
+<blockquote>
+  <p><img SRC="bullet.gif" WIDTH="10" height="13"> RAM
+</blockquote>
+<blockquote>
+  <blockquote>
+    <p>RAM is something that you really can never have enough of.  Any time your machine doesn't have enough RAM it will start using a swap file, which is 
+	much slower.  At the minimum you are going to want 64 MB of RAM, but 128 would be ideal. </p>
+  </blockquote>
+</blockquote>
+
+<TABLE><TR>
+	<TD VALIGN=TOP><IMG SRC="note.jpg"></TD> 
+	<TD><H5>The requirements are <B>very</B> dependant on the number of players on your server. The above requirements should be fine for a 16 player server.
+	If you're planning on running a 32 player server, you'll need to have considerably more bandwidth, CPU power, and RAM than outlined above. A 6 or 8 player
+	server could get by with slightly less than described. </H5></TD>
+</TR></TABLE>
+
+<BR><BR>
+<HR>
+<A NAME="dedstart"><H3>How do I start the dedicated server?</H3>
+
+The dedicated server program sits on the root of your Half-Life directory (<B>hlds.exe</B>).  The first thing you should do is right click on the file and create a shortcut
+to it somewhere on your computer.  This will make it easier to customize your server. The first thing that the dedicated server needs to know is what kind of game it 
+will be running.  Right click on the shortcut you created and go up to the target line.  In the target line, append <B>-game tfc</B>.  Then decide how many players
+you want your server to allow on it at once. Team Fortress 1.5 will support games of up to 32 players.  Remember, the more people you allow to join your game, 
+the more CPU power and bandwidth you will need to support them. Once you've decided, append this to the target line: <B>+maxplayers X</B>, when <B>X</B> is
+the number of players.<BR>
+A sample Target line might read like this:
+<blockquote>
+	<h5><B>hlds.exe -game tfc +maxplayers 16</h5></B>
+</blockquote>
+This lets the dedicated server know that it should look for all the files that it needs in the TFC directory, and that you're allowing a maximum of 16 players on your
+server at any one time.
+<P>
+You are now running a Team Fortress 1.5 server, but you need to run a map for people to join.  Click on the <B>console line</B> at the bottom and type in 'map 2fort'.  Now 
+you are running a server that people can connect to.  Hit the status button (or type <B>status</B> at the command line) and you can see information on your server, such as
+the map you're running,  what IP address your server is running from, how many people are connected to your game, and how many people you will allow in your game.  
+
+<BR><BR><BR><BR>
+<HR>
+<A NAME="customize"><H3>How do I customize my server?</H3>
+
+Once you've got a server started, you can set a variety of variables to run the server exactly how you wish. This is done by typing various commands into the <B>console
+line</B>. If you have settings you want to always have, you can use Notepad to edit the <B>server.cfg</B> file in your <B>Half-Life \ TFC</B> directory. Then, whenever 
+you start you server, it'll run that file, executing all the commands in it just as if you'd typed each on the <B>console line</B>.<P>
+Below is a list of the most common settings that you'll probably want to customize.
+
+<BR><P>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I change my server's name?</H4>
+<blockquote>
+	If you want your server to have a custom name in the server list, you need to use the <B>hostname</B> command, followed by the name you wish, in quotes.
+	<BR>For example:
+	<blockquote>
+		<h5><B>hostname "My TF Server!"</h5></B>
+	</blockquote>
+</blockquote>
+
+<BR><P>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I change my server's name?</H4>
+<blockquote>
+	If you want your server to have a custom name in the server list, you need to use the <B>hostname</B> command, followed by the name you wish, in quotes.
+	<BR>For example:
+	<blockquote>
+		<h5><B>hostname "My TF Server!"</h5></B>
+	</blockquote>
+</blockquote>
+
+<BR><BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I change the amount of time each map is played for?</H4>
+<blockquote>
+	TF servers have a setting called the timelimit. The timelimit is the amount of time a map is played before the server automatically moves onto the next one. You can
+	alter this using the <B>mp_timelimit</B> command, followed by the amount of time in minutes you want the server to run each map.
+	<BR>For example, this setting will make your server run each map for 30 minutes:
+	<blockquote>
+		<h5><B>mp_timelimit 30</h5></B>
+	</blockquote>
+</blockquote>
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I change the maps my server is playing?</H4>
+<blockquote>
+	Your server moves through a list of maps called the Map Cycle. It finds the list in the <B>mapcycle.txt</B> file that's found in your <B>Half-Life \ TFC</B> directory.
+	Use Notepad to edit the file. You can add and remove maps simply by adding or deleting the map names in the file. <P>
+	<TABLE><TR>
+		<TD VALIGN=TOP><IMG SRC="note.jpg"></TD> 
+		<TD>If you add a new map name to the list, make sure you also place the map (the .BSP file) into your <B>Half-Life \ TFC \ maps</B> directory. You
+		may need to make this directory yourself. </TD>
+	</TR></TABLE>
+</blockquote>
+
+<BR><BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I change my server to a specific map?</H4>
+<blockquote>
+	You can use the <B>changelevel</B> command, followed by the name of the map, to change to a specific map. 
+	<BR>For example, this will change your server to the Well:
+	<blockquote>
+		<h5><B>changelevel well</h5></B>
+	</blockquote>
+</blockquote>
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I prevent teammates from hurting each other?</H4>
+<blockquote>
+	You can change the teammate damage settings using the <B>mp_teamplay</B> command. There's a variety of different settings you can choose. Each setting
+	has an associated value. Add up the values of all the settings you want on, and type <B>mp_teamplay</B> followed by the sum of the settings. Here's the list of the
+	settings and their associated values:<BR>
+	<blockquote>
+	<TABLE>
+		<TR> <TD>Teamplay on (<font color=#FFFFFF>you should always set this</font>)</TD> <TD  WIDTH=50 ALIGN="RIGHT">1</TD> </TR>
+		<TR> <TD><font color=#888888>Teammates take half damage from direct weaponfire</font></TD>	<TD ALIGN="RIGHT"><font color=#888888>2</font> </TD></TR>
+		<TR> <TD>Teammates take no damage from direct weaponfire</TD> <TD  ALIGN="RIGHT">4</TD> </TR>
+		<TR> <TD><font color=#888888>Teammates take half damage from explosive weaponfire</font></TD>	<TD ALIGN="RIGHT"><font color=#888888>8</font> </TD></TR>
+		<TR> <TD>Teammates take no damage from explosive weaponfire</TD> <TD  ALIGN="RIGHT">16</TD> </TR>
+		<TR> <TD><font color=#888888>Teammates armor takes half damage from direct weaponfire</font></TD>	<TD ALIGN="RIGHT"><font color=#888888>128</font> </TD></TR>
+		<TR> <TD>Teammates armor takes no damage from direct weaponfire</TD> <TD  ALIGN="RIGHT">256</TD> </TR>
+		<TR> <TD><font color=#888888>Teammates armor takes half damage from explosive weaponfire</font></TD>	<TD ALIGN="RIGHT"><font color=#888888>512</font> </TD></TR>
+		<TR> <TD>Teammates armor takes no damage from explosive weaponfire</TD> <TD  ALIGN="RIGHT">1024</TD> </TR>
+	</TABLE>
+	</blockquote>
+	For example, this will completely prevent players from hurting their teammates with direct and explosive weaponry ( 1 + 4 + 16 = 21 ) :
+	<blockquote>
+		<h5><B>mp_teamplay 21</h5></B>
+	</blockquote>
+</blockquote>
+
+<BR><BR>
+<HR>
+<A NAME="won"><H3>Getting your server recognized by WON</H3></A>
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I know that others can see my server?</H4>
+<blockquote>
+
+	When you start up the server it will either say <B>WON Auth Server</B> or just <B>Auth Server</B> at the server's console.  If your server says WON Auth server at the console, that means 
+	that it is properly sending a heartbeat to the WON master server.  As long as your server is sending heartbeats to the master server, you will be listed in the Half-Life
+	launcher.
+
+</blockquote>
+
+
+
+
+<BR><BR>
+<HR>
+<A NAME="kickban"><H3>Kicking and Banning Players From Your Server</H3></A>
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How are players identified by the server?</H4>
+<blockquote>
+
+	The server identifies players that are connected to your server by assigning them a <B>userid</B> and (in the case of an Internet server) a <B>uniqueid</B>.  To see the <B>userid</B>
+	and <B>uniqueid</B> for the users connected to your server, type the command <B>users</B> at the server's console.  This will display all the users connected to your 
+	server, their <B>userid</B>, and their <B>uniqueid</B>.  The first number listed is the player's <B>userid</B>:
+	
+	<blockquote>
+		<h5>The <B>userid</B> number is generated by the server and increases in increments of one as more users connect to your server.
+		For example, if you start up your server and the first client connects, they are assigned <B>userid</B> #1.  The second client that connects will be assigned <B>userid</B> #2.
+		If the first client disconnects and reconnects to your server they will be assigned <B>userid</B> #3 and so on.</h5>
+	</blockquote>
+
+	The second number shown is the user's <B>uniqueid</B>:  
+	<blockquote>
+		<h5>This is the id that is unique per cd key and is assigned by WON.  This is the second id ( 10 digits or so ) returned when you type the <B>users</B> command.</h5>
+	</blockquote> 
+</blockquote>
+
+
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I kick a player off my server using their name?</H4>
+<blockquote>
+	There are a few different ways to kick a player off your TF server.  The first step is to identify the player that you want to kick off.  If you know the player's name
+	already, you can kick them off using their name.  As an example, let's say that a player named 'Bob' is causing trouble on your TF server.  You have warned him to curb his
+	behavior, but he continues.
+	<BR><BR>In this case you would type the following text at the dedicated server console:
+
+		<blockquote>
+		<h5><B>kick Bob</h5></B>
+		</blockquote>
+
+</blockquote>
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I kick a player by their <B>userid?</B></H4>
+<blockquote>
+	To kick a user by their <B>userid</B>, first type in <B>users</B> at the server's console.  This will give you a listing of the users on your computer and their 
+	corresponding  <B>userid</B>.  
+	<BR><BR>We'll use Bob as the example again. To kick Bob off your server using his <B>userid</B>, type this in at the server's console:
+
+		<blockquote>
+		<h5><B>1. users</h5></B>
+		<h5><B>2. kick # (Bob's userid)</h5></B>
+
+			<TABLE><TR>
+			<TD VALIGN=TOP><IMG SRC="note.jpg"></TD> 
+			<TD>  Make sure that you have a space between the pound sign (#) and the player's <B>userid</B>.</TD>
+			</TR></TABLE>
+
+	
+	</blockquote>
+</blockquote>
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I ban a player from my server for a specific amount of time?</H4>
+<blockquote>
+	If a player is causing enough trouble on your server that you want to ban them for a specific amount of time, then you should use the
+	<B>banid</B> command.  With the <B>banid</B> command you can ban a player for a specific number of minutes until they cool off and start playing in a 
+	manner that makes the server more enjoyable for everyone.
+	<BR><BR>To ban the player 'Bob' from your server for 5 minutes, type this in at the server's console:
+
+		<blockquote>
+			<h5><B>1. users</h5></B>
+			<h5><B>2. banid 5 (Bob's uniqueid)</h5></B>
+		</blockquote>
+
+</blockquote>
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I ban a player from my server permanently?</H4>
+
+<blockquote>
+	Sometimes a player will cause enough trouble that you have to deny them access to your server permanently.  Banning a player from your server
+	permanently is accomplished in the same way as banning a player from your server for a specific amount of time.
+	<BR><BR>To ban the player 'Bob' from your server permanently, type this at the server's console:
+
+		<blockquote>
+			<h5><B>1. users</h5></B>
+			<h5><B>2. banid 0 (Bob's uniqueid)</h5></B>
+		</blockquote>
+
+</blockquote>
+
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I ban a player from my server and kick them at the same time?</H4>
+
+<blockquote>
+	To ban a player from playing on your server and kick them at the same time, simply add in the command <B>kick</B> in your <B>banid</B> line.
+	<BR><BR>To ban the player 'Bob' from your server for 10 minutes and kick him off, type this at the server's console:
+
+		<blockquote>
+		<h5><B>1. users</h5></B>
+		<h5><B>2. banid 10 (Bob's uniqueid) kick</h5></B>
+		
+	</blockquote>
+</blockquote>
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I get the list of players that are banned permanently on my server?</H4>
+<blockquote>
+	If you have banned users permanently from your server, it's a good idea to keep a list of those <B>uniqueids</B> handy.
+	<BR><BR>To write out a list of the users that you have banned permanently from your server, type this in at the server's console:
+		
+		<blockquote>
+			<h5><B>writeid</h5></B>
+		</blockquote>
+
+	This will write out a file called <B>banned.cfg</B> to the working directory of your server.  In the case of a TFC server it will be written to
+	<B>\halflife\tfc.</B>
+		
+</blockquote>
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I make my server keep its banned list after I have restarted the server?</H4>
+<blockquote>
+	If you have restarted your server and want to keep 'Bob' off your server, you will want to add a line into your server's <B>server.cfg</B> file.  
+	The <B>server.cfg</B> is located at \halflife\tfc and is run every time your server starts up or changes maps.
+	To keep Bob off your server after the server has restarted, do this:
+		<blockquote>
+
+			<h5><B>1. Open up your <B>server.cfg</B> file at \halflife\tfc with notepad or another text editor.</h5></B> 
+			<h5><B>2. Add lines at the bottom of the file that say <B>banid 0 (Bob's uniqueid)</B></h5></B> 
+			<h5><B>3. Save and close the <B>server.cfg</B> file.</B></h5></B> 
+
+
+	
+	</blockquote>
+</blockquote>
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I remove a user from my list of banned players?</H4>
+<blockquote>
+	If you have a player that has changed their ways and you want to allow them back on your server after you have banned them, you can use the
+	<B>removeid</B> command.
+	To remove Bob from your banned list, type this in at the server's console:
+
+		<blockquote>
+		<h5><B>removeid (Bob's uniqueid)</h5></B> 
+		</blockquote>
+
+</blockquote>
+
+
+<BR><BR>
+<HR>
+<A NAME="advanced"><H3>Advanced Customization</H3></A>
+
+<BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I turn on Auto Team?</H4>
+<blockquote>
+	If you want to have your server automatically place players into teams, you turn Auto Team on. Note that for the first 30 seconds of a game, players are allowed
+	to join the team they want, to allow teams to reshuffle after each map. The Auto Team command is <B>tfc_autoteam</B>, and it simply needs to be set to 1 or 0.
+	<BR>For example, this turns on Auto Team:
+	<blockquote>
+		<h5><B>tfc_autoteam 1</h5></B>
+	</blockquote>
+</blockquote>
+
+<BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How can I remotely administer my server?</H4>
+<blockquote>
+	Remote administration makes it possible for the server administrator to control their server without sitting at the machine the server is running on.  This can
+	be very useful for server operators that play on their own servers.  Remote administration is accomplished using the <B>rcon</B> (remote console).  The first
+	thing you need to do is set up an rcon password on the server you want to control.
+	To set the rcon password at the server, type this in at the server's console:
+
+		<blockquote>
+		<h5><B>rcon_password (the password you choose)</h5></B> 
+		</blockquote>
+
+	Now that the rcon password is set you are ready to control it remotely.  Connect to the server from another machine and bring down the console.
+	Now you have to let your server know that you are legitimate and should be able to control the server.  To do this, you send the server the rcon password.
+	To send the rcon password, type this at the client's console:
+	
+		<blockquote>
+		<h5><B>rcon_password (the password you typed at the server console)</h5></B>
+		</blockquote>
+
+	You are now recognized by your server as an administrator.  Issuing rcon commands is the same as issuing commands from the server itself.  For example, say you 
+	wanted to change the map to 2fort.  You would type in:
+
+		<blockquote>
+		<h5><B>rcon changelevel 2fort</h5></B>
+		
+			<TABLE><TR>
+			<TD VALIGN=TOP><IMG SRC="note.jpg"></TD> 
+			<TD>  At this point you will get a 'bad rcon password' message if the password you entered was incorrect.</TD>
+			</TR></TABLE>
+		</blockquote>
+
+	You can issue virtually any command to your server using the rcon command.  You can also get your user list using the rcon command, and it will be printed
+	into your client's console.	To get your user list along with the user's unique ids, type this in at your client's console:
+
+		<blockquote>
+		<h5><B>rcon users</h5></B>
+		</blockquote>
+	
+		
+</blockquote>
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I set the amount of data the server will send?</H4>
+<blockquote>
+	If you would like to set the amount of data that the server will send to its connected clients, you will want to use the <B>sv_minrate</B> and <B>sv_maxrate</B>
+	commands.  Say, for example, you wanted to only allow users to play with rate settings of less than 5000 on your server to conserve your server's bandwidth.  To do
+	that, you would type this at the server's console:
+	<blockquote>
+		<h5><B>sv_maxrate 5000</B></h5>
+	</blockquote>
+	Conversely, if you wanted to only allow users with high bandwidth connections to play on your server (rate settings of greater than 8000) you would do that this way:
+	<blockquote>
+		<h5><B>sv_minrate 8000</B></h5>
+	</blockquote>
+
+</blockquote>
+
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I set a Respawn Delay?</H4>
+<blockquote>
+	Some maps work much better if the game is slowed down a bit, and one easy way to do this (and make players appreciate their lives a little more) is to
+	add a respawn delay. When they die, players cannot respawn for the amount of time specified by the respawn delay. Long respawn delays aren't a lot of
+	fun, but even short ones of 5 seconds or so can change the flow of a map considerably, and make medics far more important. The command you want to
+	use is <B>tfc_respawndelay</B> followed by the amount of time, in seconds, that you want the respawn delay to be.
+	<BR><BR>For example, this gives all players a respawn delay of 10 seconds:
+	<blockquote>
+		<h5><B>tfc_respawndelay 10</h5></B>
+	</blockquote>
+</blockquote>
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I set up Team Equalization?</H4>
+<blockquote>
+	TFC has subtle team equalization built in, which alters the strength of each team as the game progresses to make it slightly more even, and hence more fun.
+	(It's great for public games, but probably not something you want for clan battles.) The way it works is this: every 10 seconds the game calculates a multiplier
+	for each team, and then every piece of damage done by any player is multiplied by the damage multiplier of his/her team. The multiplier is calculated based
+	upon two factors: the score of each team and the number of players on each team. If a team has a higher score and more players than their opposing team,
+	its multiplier will be less than 1, so that all damage its team members are doing is reduced. The opposing team's multiplier would be greater than 1, so its
+	team members are doing more damage. If the losing team starts to come back, the multipliers will reduce in strength.<BR><BR>	You can toggle off the factors in the multiplier calculation, or turn them both off if you don't want team equalization at all. This isn't recommended, especially
+	for public games. Team equalization is extremely subtle, and all it does is make the game slightly more fun for everyone in it. <BR><BR>The two commands you want to
+	use are <B>tfc_balance_teams</B>, to equalize based upon number of players in each team, and <B>tfc_balance_scores</B>, to equalize based upon the
+	scores of each team. Both settings can be on at once, which is recommended.
+	<BR><BR>For example, this turns on equalization based upon scores and players:
+	<blockquote>
+		<h5><B>tfc_balance_teams 1</h5></B>
+		<h5><B>tfc_balance_scores 1</h5></B>
+	</blockquote>
+</blockquote>
+
+
+<BR><BR>
+<HR>
+<A NAME="clan"><H3>Clan Battles</H3></A>
+
+TFC supports a mode called <B>Clan Battle</B>. This mode is designed for a battle between two specific teams. It's best not to run your public server 
+in this mode. In Clan Battle mode, TFC keeps full track of players joining, disconnecting, scoring, and killing each other, and at the end of the game it'll 
+display a dump of all this data.<P>
+The other main feature of Clan Battle mode is <B>Player Substitution</B>. Whenever a player joins a Clan Battle server, he/she is assigned a Battle ID. This is a
+unique number that identifies this player to the battle. The Battle ID is displayed throughout prematch, as well as every time the player dies. Players should
+write down their Battle ID. If they are disconnected during the battle, they can use the Battle ID to reconnect onto the server, and be automatically
+re-assigned their team, class, and kills. If a player is unable to continue to play, the Battle ID can be given to someone else, who can then substitute.<BR><BR>To connect with a Battle ID, the <B>player</B> needs to type, at the console, <B>setinfo tf_id</B>, followed by the Battle ID. The player should then connect. For example,
+if you had a Battle ID of 212, and you were playing on a server with an IP of 202.166.23.24, you'd type this at the console:
+<blockquote>
+	<h5><B>setinfo tf_id 212</h5></B>
+	<h5><B>connect 202.166.23.24</h5></B>
+</blockquote>
+
+<BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I turn on Clan Battle Mode?</H4>
+<blockquote>
+	Use the <B>tfc_clanbattle</B> command to set Clan Battle Mode. 1 turns it on, 0 off.
+	<BR>For example, this turns on Clan Battle Mode:
+	<blockquote>
+		<h5><B>tfc_clanbattle 1</h5></B>
+	</blockquote>
+</blockquote>
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I set up a prematch time?</H4>
+<blockquote>
+	Prematch time is an amount of time in which players can run around and kill each other, but not actually achieve any mission goals. It's a good idea to run a
+	clan battle with a few minutes of prematch time, to allow players to warm up, and ensure that all the players are in the game before it starts. You can set up 
+	a prematch time using the <B>tfc_clanbattle_prematch</B> command, followed by the length of time in minutes. You can alter the length of the prematch time 
+	while the game is running using the same command.
+	<BR><BR>For example, this sets up a 10 minute prematch time:
+	<blockquote>
+		<h5><B>tfc_clanbattle_prematch 10</h5></B>
+	</blockquote>
+</blockquote>
+
+<BR><BR>
+<H4><img SRC="bullet.gif" WIDTH="10" height="13"> How do I prevent anyone else from joining our clan battle while it's running?</H4>
+<blockquote>
+	You can use the <B>tfc_clanbattle_locked</B> command to lock your game. Once this is done, the server will lock itself as soon as the prematch time is over 
+	and the battle has begun. The only players allowed on will be ones with Battle IDs that match players who were disconnected. This is highly recommended for
+	clan battles.
+	<BR><BR>For example, this tells your server to lock itself after the game starts:
+	<blockquote>
+		<h5><B>tfc_clanbattle_locked 1</h5></B>
+	</blockquote>
+</blockquote>
+
+
+<BR><BR><BR>
+</BODY>
+</HTML>

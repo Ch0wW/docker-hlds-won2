@@ -1,0 +1,7 @@
+10
+weapon			320 hudsg	0	0	128	40
+weapon_s		320 hudsg	0	0	128	40
+ammo			320 hudsgammo	0	0	24	24
+weapon			640 hudsg	0	0	128	40
+weapon_s		640 hudsg	0	0	128	40
+ammo			640 hudsgammo	0	0	24	24

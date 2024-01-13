@@ -1,0 +1,16 @@
+Sequential Territorial Control
+
+Objective: Capture all five command points in the map in sequential order.
+Move onto a capture point to capture.
+
+Scoring: 30 points for capturing all the command points.
+
+Other Notes:
+Blue captures points in order -- 1,2,3,4,5.
+Red captures points in descending order -- 5,4,3,2,1.
+
+Once a point has been captured, it cannot be re-captured for 15 seconds.
+Points have a panel covering them when they cannot be captured.
+
+The tunnel under the bridge requires a detpack to clear.
+Once it's been cleared, another detpack explosion can re-seal it.

@@ -1,0 +1,530 @@
+<HTML>
+<HEAD>
+<TITLE>Team Fortress 1.5 Server Administrator Guide</TITLE>
+<STYLE TYPE="text/css">
+  body {
+    font-family : "Tahoma, Arial, Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+	color : #BBBBBB;
+    }
+
+  A:link {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+    font-weight : bold;
+    color : #CC6600;
+	text-decoration: none;
+    }
+
+  A:visited {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+    font-weight : bold;
+    color : #CC6600;
+	text-decoration: none;
+    }
+
+  A:hover {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+    font-weight : bold;
+    color : #FF9900;
+	text-decoration: none;
+    }
+
+  TD {
+    font-family : "Tahoma, Arial, Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+	color : #BBBBBB;
+    }
+
+  H3 {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 15pt;
+    fontsize : 16pt;
+    font-weight : bold;
+    color : #CC6600;
+	text-decoration: none;
+    }
+   H4 {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 11pt;
+    fontsize : 12pt;
+    font-weight : bold;
+    color : #CC6600;
+	text-decoration: none;
+    }
+   H5 {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 8pt;
+    fontsize : 9pt;
+    font-weight : normal;
+    color : #CC6600;
+	text-decoration: none;
+    }
+</STYLE>
+</HEAD>
+<BODY BGCOLOR="#000000">
+
+<P>
+The 1.1.0.0 version of Half-Life includes a stat tracking program called <B>TFStats</B> for <B>Team Fortress 1.5</B>.  This document will explain how it works.<BR>
+<P>
+
+<A NAME="whatis"><H3>What is <B>TFStats</B>?</H3></A>
+
+<blockquote>
+  <p><IMG height=13 src="bullet.gif" width=10> <B>TFStats</B> is a program that generates an HTML report of a <B>Team Fortress 1.5</B> match.</p> 
+</blockquote>
+
+
+<BR><BR>
+<HR>
+<A NAME="howrun"><H3>Who runs <B>TFStats</B>?</H3>
+	<blockquote>
+		<B>TFStats</B> is a server-side application. The server op must run the program with the logfiles his server generates and make the report available via the web. If the server
+		op has done so, a player can point his browser to the report on the web and view how well he did against the others, and how useful he was to his team, etc.  <BR>
+	</blockquote>
+<BR>
+<HR>
+<A NAME="install"><H3>How do I install <B>TFStats</B>?</H3>
+	<blockquote>
+		<B>TFStats</B> is installed along with the Half-Life patch it accompanies.  <B>TFStats</B> was written to be easy to install and use,  the only file required to use it is <B>TFStatsRT.exe</B> itself.
+		However, to use <B>custom rules</B> (see <B>custom rules</B> below) you must also have the <B>custom rule</B> files (also explained below). All other files necessary for correct operation such as 
+		gifs and javascript source files are embedded in the program and will be automatically generated when <B>TFStats</B> is run. Thus <B>TFStats</B> can be relocated/reinstalled by copying 
+		<B>TFStatsRT.exe</B> and any rule files you may use to which ever directory you want.
+	</blockquote>
+
+<HR>
+<BR><P>
+<A NAME="run"><H3>Running <B>TFStats</B></H3></a>
+	
+<H4><IMG height=13 src="bullet.gif" width=10> How do I run <B>TFStats</B> on my server that is running Windows?</H4>
+	<blockquote>
+	<B>Basic (Recommended) Method:</B> Run the windows front end (TFStats.exe) and run through the tabs, changing the directories and checkboxes to your tastes, then add some logs in the first panel, and click OK.  TFStats will generate reports for each of the logs you requested.<BR><BR>
+
+	<B>Advanced Method:</B> Open a windows command prompt, and change directories to the directory in which TFStats resides. Run TFStatsRT.exe file with the name of a <B>logfile</B> specified as a command line parameter.  
+		For example, after changing to the right directory, you'd type something similar to this (though with a different log file) at the command line:
+		<blockquote>
+			<h5><B>TFStatsRT.exe&nbsp;&nbsp;logs\L0726012.log</h5></B>
+		</blockquote>
+	If you use this method, you can	also specify an output folder to tell the program where to put all the files it generates.  For example:
+		<blockquote>
+			<h5><B>TFStatsRT.exe&nbsp;&nbsp;logs\L0726012.log&nbsp;&nbsp;outputDir=c:\TFStatsReports\L0726012\</h5></B>
+		</blockquote>
+	If you don't specify a folder, it will output files into the directory that it is running from.  It is recommended that you always
+	specify an output directory so you don't clutter up your current directory with html files and things.<BR><BR>
+	</blockquote>
+	
+<H4><IMG height=13 src="bullet.gif" width=10> What is the outputdir?</H4>
+<blockquote>	
+	OutputDir is a switch to tell TFStats to put the files in the location specified after the = sign
+</blockquote>
+
+<H4><IMG height=13 src="bullet.gif" width=10> What is a switch? </H4>
+<blockquote>
+	Switches are ways to get TFStats to do different stuff depending on what you want.
+	<blockquote>
+		<B>OutputDir</B> which is explained above.<BR><BR>
+
+		<B>DisplayMM2</B>: (yes/no) This switch tells TFStats whether or not to display team_messages in the dialog readout.  Setting this switch to "yes" will make TFStats display
+		team messages, setting it to no will ensure that team_messages are omitted from the readout.  Here is an example of how to use it:
+		<blockquote>
+			<h5><B> TFStatsRT.exe&nbsp;&nbsp;logs\L0726012.log&nbsp;&nbsp;outputDir=ReportOutput\L0726012&nbsp;&nbsp;DisplayMM2=no<BR>
+			or<BR>
+			TFStatsRT.exe&nbsp;&nbsp;L0726012.log&nbsp;&nbsp;outputDir=ReportOutput\L0726012&nbsp;&nbsp;DisplayMM2=yes</B></h5>
+		</blockquote><BR><BR>
+
+		<a name="ruledir"><B>ruleDir</B></a>: This switch tells TFStats where to look for rule files.  TFStats will look for rules in the directory specified after the = sign.<BR><BR>
+
+		<B>persistPlayerStats</B>: (yes/no)  This switch tells TFStats to save player statistics so that they can be ranked across several matches. If you use this switch
+		you must include the next two switches as well. The two switches after those are optional (Note: player stats will not be saved for lan games)<BR>
+		<B>playerDir</B>: This tells TFStats to store the player files in the directory specified after the = sign.  If TFStats encounters any player files already in that
+		directory, it will determine if any of the players it is storing are the same as any players that are already there, and if so, it will merge their statistics. Since
+		player files are meant to be shared by all reports, it is recommended that you specify this directory to be somewhere in "common ground", rather than putting
+		it with one report. The recommended value for this switch is the ouput directory (explained above) with "\..\players" appended. For example, if your outputDir is
+		"c:\TFStatsReportOutput\L090105" then the recommended playerDir is "c:\TFStatsReportOutput\L090105\..\players" or just "c:\TFStatsReportOutput\players".<BR>
+		<B>playerHTTPPath</B>: This is the path from the output directory to the player directory. It will be inserted into the HTML that TFStats generates. Since several
+		reports will be accessing the same player report and that player report can be , this switch will have to be customized to your particular setup. The value of this switch depends on how you make 
+		your reports available on your web server, and what the value for the playerDir switch is.  If you use the recommended value of the playerDir, then the value for 
+		this switch needs to be  "../player". Note that the forward slash needs to be there even if you are using Windows. HTTP paths use forward slashes. <BR>
+		<B>eliminateOldPlayers</B>: (yes/no) This switch tells TFStats to not report players who have not played for a certain amount of time from the persistent player
+		stats.  Note that this does not delete their data files, it just omits them from the report.  So if they return to your server and play, they will have not lost their old
+		stats. <BR>
+		<B> oldPlayerCutoff</B>: The value of this switch is how many days a player can be absent from the server before his stats are eliminated from the persistent stats.
+		For example if the value of this switch is 7. Then a player has to play at least once a week for their stats to continue to be reported.  If they are absent for
+		longer than a week, their stats will be omitted from the report until they return.<BR><BR>
+	
+		<B>useSupportDir</B>:  (yes/no) This switch tells TFStats to share images, style sheets and javascripts between all reports, thus saving disk space. If you use this switch
+		you must include the next two switches as well...<BR>
+		<B>supportDir</B>: This tells TFStats where the resources will be located on your hard drive.  The recommended value for this switch is the ouput directory 
+		(explained above) with "\..\support" appended. For example, if your outputDir is "c:\TFStatsReportOutput\L090105" then the recommended supportDir is
+		"c:\TFStatsReportOutput\L090105\..\support" or just "c:\TFStatsReportOutput\support".<BR>
+		<B>supportHTTPPath</B>: This is the path from the output directory to the support directory.  It will be inserted into the HTML that TFStats generates. Much
+		like the playerHTTPPath, the value of this switch will be highly subjective, depending on your web-setup.  The recommended value of this switch is "../support"<BR><BR>
+
+		<B>displayStartupInfo</B>:  (yes/no) This switch tells TFStats to display the all the switches that you are passing it as it runs.  This will help if you think you 
+		are entering the switches correctly, but it is not working for some reason. <BR><BR>
+	</blockquote>
+</blockquote>
+<BR><BR>
+<HR>
+<A NAME="output"><H3><B>TFStats</B> Output</H3></A>
+
+<BR><BR>
+<H4><IMG height=13 src="bullet.gif" width=10> What does <B>TFStats</B> produce?</H4>
+<blockquote>
+	After <B>TFStats</B> has done it's thing, you'll find several new files in the directory you specified.  The HTML files make up report itself,  and the rest of the files are support files 
+	to make the report look and work better. The files in the <B>\img</B> directory are all the images that the report uses. The <B>CSS</B> file and <B>JS</B> file are support files, containing style parameters and 
+	javascript source code respectively.  
+</blockquote>
+			   
+
+<BR><BR>
+<H4><IMG height=13 src="bullet.gif" width=10> How do I look at the report? </H4>
+<blockquote>
+	<B>index.html</B> is the starting page of the report. Just load up <B>index.html</B> in your favorite browser (see below for browser compatibility issues) and you will be able to view the report. 
+	You can navigate through the report like any web page. The links on the left control what section you are viewing.  On the top, info about the match itself is displayed.
+</blockquote>
+
+<BR><BR>
+<H4><IMG height=13 src="bullet.gif" width=10> How do I let players on my 
+server look at the report?</B></H4>
+<blockquote>
+	  The easiest way to do this is to post it to your webpage. How you do this varies from person to person.  If you do not have a webpage, you can e-mail the files
+	  to players who request them.
+</blockquote>
+
+<BR>
+<H4><IMG height=13 src="bullet.gif" width=10> What browsers are compatible with the report?</H4>
+<blockquote>
+	<B>TFStats</B> was developed and tested primarily on Microsoft Internet Explorer 5 thus it looks best on IE5, however, IE4 and Netscape 4 were both tested and both are supported as well. In general, 
+	for a browser to work with <B>TFStats</B>, it needs to support HTML 4.0 with Cascading Style Sheets and it needs to be able to execute Javascript 1.2 scripts. So, in conclusion, the recommended
+	browser is IE5. If you have IE5, you will be getting the full <B>TFStats</B> experience.  However, the other browsers mentioned above work too.
+</blockquote>
+
+
+<HR>
+<A NAME="report"><H3> The Report</H3></A>
+
+<BR>
+<H4><IMG height=13 src="bullet.gif" width=10> What is rank?</H4>
+<blockquote>
+	A player's <B>rank</B> is the number kills they got, minus the number of deaths, divided by the amount of time he was playing. Ranks below 0 signify that the player had more deaths than kills.  
+	The team's average <B>rank</B> is just that, the average <B>rank</B> of the team.  More specifically the formula for calculating rank is as follows:  
+	<blockquote>
+	<h5><B>((Kills - Deaths) * 1000) / secondsPlaying</h5></B>
+	</blockquote>
+	This amounts to the player's kills-deaths per 1000 seconds.
+</blockquote>
+
+<BR>
+<H4><IMG height=13 src="bullet.gif" width=10> What do the awards mean?</H4>
+<blockquote>
+<B>Awards</B> are given out to players who showed exemplary service in certain areas.  There is one or two <B>awards</B> for each class, and several <B>awards</B> that aren't specific to one class.<BR>
+Here is each <B>award</B> described in full:	
+	<blockquote>
+		Class Awards:
+			<blockquote>
+				<B>Scout:</B> 
+					<blockquote>
+						<h5><B>Survivalist Award:</B> This award is given to the scout who dies the least.</h5>
+					</blockquote>
+
+				<B>Sniper:</B>
+					<blockquote>
+						<h5><B>Sharpshooter Award:</B>  This award is given to the best sniper.  All of a sniper's snipe-shot kills are totaled, with Headshots being worth 3 normal shots, 
+						and the highest total wins the award.</h5><BR>
+					</blockquote>
+
+				<B>Soldier:</B>
+					<blockquote>
+						<h5><B>Rocketry Award:</B>  The soldier who gets the most kills with his trusty rocket launcher wins this award.</h5><BR>
+					</blockquote>
+
+				<B>Demoman:</B>
+					<blockquote>
+						<h5><B>Grenadier Award:</B>  This is given to the demoman who killed the most people with the grenade launcher.<BR>
+				        <B>Demolitions Award:</B>  This is given to the demoman who gets the most kills with the detpack.</h5><BR>
+					</blockquote>
+							
+				<B>Medic:</B>
+					<blockquote>
+						<h5><B>LifeSaver Award:</B>  This is given to the medic who cured the most infections, healed the most people, etc.<BR>
+						<B>Biological Warfare Award:</B> This is given to the medic who got the most kills from infections (his bioweapon)</h5>
+					</blockquote>
+
+				<B>Heavy Weapons Guy:</B>
+					<blockquote>
+						<h5><B>Assault Cannon Award (Swiss cheese award):</B> This award is given to the HWGuy who killed the most people with his assault cannon.</h5>
+					</blockquote>
+
+				<B>Pyro:</B>
+					<blockquote>
+						<h5><B>Blaze of Glory Award:</B> This is given to the pyro who killed the most people with flames.</h5>
+					</blockquote>
+
+				<B>Spy:</B>
+					<blockquote>
+						<h5><B>Assassin Award:</B> This is given to the spy who killed the most people with his knife.</h5>
+					</blockquote>
+				<B>Engineer:</B>
+					<blockquote>
+						<h5><B>Best Placement Award: </B>This is given to the Engineer who has the most kills from any sentry gun he has built.<BR>
+						<B>Worst Placement Award: </B>This is given to the Engineer who has to rebuild his buildings the most.  In other words, to the engineer who 
+						built the most buildings.</h5>
+					</blockquote>
+				<B>Non-Class-Specific Awards:</B>
+					<blockquote>
+						<h5><B>Kevorkian Award: </B>This "award" is given to the player who kills the most teammates.<BR>
+						<B>Kamikaze Award: </B>This "award" is given to the player who kills themselves the most times.<BR>
+						<B>BigMouth Award: </B>This is given to the player who talks the most.</h5>
+					</blockquote>
+			
+			</blockquote>
+
+
+</blockquote>
+
+<BR><BR>
+<HR>
+<A NAME="customrules"><H3>Using Custom Rules</H3></A>
+
+<B>Custom rules</B> are considered an "advanced" topic.  They are not required for <B>TFStats</B> to function, but they can enhance the generated report. 
+<BR>
+
+<H4><IMG height=13 src="bullet.gif" width=10> What is a custom rule?</H4>
+<blockquote>
+	<B>TF</B> is a flexible game and supports more than just Capture The Flag style maps.	Take <B>Canalzone</B> or <B>Rock</B> for example, neither of them have anything to do with 
+	capturing a flag.  Therefore, hardcoding flag capture support into <B>TFStats</B> would be silly.  Custom rules are in <B>TFStats</B> to allow more than just flag 
+	caps to be recognized and awarded in the final report. For example, if a map-maker created a map in which the goal was to rescue a cat from a tree, then 
+	he could also create a custom rule that awarded the player who rescued the cat the most often in the final report. 
+</blockquote>
+
+<BR><BR>
+<H4><IMG height=13 src="bullet.gif" width=10> Where do I put custom rules?</H4>
+<blockquote>
+	<B>Custom rules</B> are contained in custom rule files which need to be placed in the same directory as <B>TFStatsRT.exe</B>.  If they are not, you need to specify 
+	their location using the <a href="#ruledir"><B>ruleDir</B></a> command line switch. The files will have the name "tfc.&lt;mapname&gt;.rul". For example, 
+	2fort's custom rule file is called <B>tfc.2fort.rul</B>.  Also the file TFC.RUL will be parsed no matter which map the match was in.  Use this file for custom rules
+	that you would like to run for all maps.
+</blockquote>
+
+<BR><BR>
+<H4><IMG height=13 src="bullet.gif" width=10> How do I write a custom rule?</H4>
+<blockquote>
+	The best way to learn would be by example.  Here is an example <B>custom rule</B> that awards the person who captured command points 1 and 2 for the blue team the
+	most often in <B>Canalzone 2</B>:
+		<blockquote>
+				<h5>Award<BR>
+			{<BR>
+				name = "Command Point 1 Capture";<BR>
+				noWinnerMessage = "Command point 1  remained neutral throughout the match";<BR>
+				extraInfo = "%player captured CP 1 %number times!";<BR>
+
+				trigger<BR>
+				{<BR>
+					key= "%s[blue team] captured command point 1";<BR>
+				}<BR>
+			}</h5>
+		</blockquote> 
+</blockquote>
+
+<H4><IMG height=13 src="bullet.gif" width=10> What does THAT mean?</H4>
+<blockquote>
+	<B>Award: </B>
+		<blockquote>
+			<h5>The first line of the rule specifies what type it is.  Unfortunately,TFStats only supports one type currently;  Award.  "Award" tells TFStats
+			that this rule will be defining a custom award to be displayed in the awards section of the report.</h5>  
+		</blockquote>
+	<B>name:</B> 
+		<blockquote>
+			<h5>This defines the name of the award.  This is what is displayed in the awards section. </h5>
+		</blockquote>
+	<B>noWinnerMessage: </B>
+		<blockquote>
+			<h5>If no one wins the award, then this message will be displayed in lieu of giving out an award. </h5>
+		</blockquote>
+	<B>extraInfo: </B>
+		<blockquote>
+			<h5>This is displayed with the award.  The two %words represent variables that are available. %player evaluates to the winning player's name
+			and %number evaluates to how many times the player triggered this rule. Also available are %winner which does the same as %player and %score which is 
+			almost the same as %number.  While %number represents how many times a player triggered the award, %score represents his score. These are not necessarily
+			the same, see the trigger property "value" below for details. </h5>
+		</blockquote>
+	<B>trigger: </B>
+		<blockquote>	
+			<h5>This defines a trigger for this rule.  A trigger is how you actually define who wins the award. triggers consist of keys and several other values
+			that are described below.</h5>
+		</blockquote>
+	<B>key:  </B>
+		<blockquote>
+			<h5>This is a string to search for in any broadcasts that are triggered by players. In Canalzone when a player captures a command point, the server
+			broadcasts a message to all clients saying "%s[blue team] captured command point 1"  (if it was CP 1).  With the player's name attached. So when TFStats
+			encounters that in the log file, it will the player whose name is attached to that message, and increment their counter for this award.  You can have more than 1 key, 
+			just define as many as you like.</h5>
+		</blockquote>
+</blockquote>
+<BR><BR>
+<H4><IMG height=13 src="bullet.gif" width=10> Why does that look different than the <B>tfc.cz2.rul</B> that is provided?</H4>
+<blockquote>
+	This is due to the interference of <B>Titles.txt</B>.  See below for details.
+</blockquote>
+
+
+<H4><IMG height=13 src="bullet.gif" width=10> What's the deal with Titles.txt, or why do the provided rul files have keys like #cz_bcap1?</H4>
+<blockquote>
+	<B>Titles.txt</B> is a text file provided by Valve to help making translation between english and non-english versions of half-life easier. However, it is of
+	concern because it changes what is actually broadcasted to the client in broadcasts.  For example, when a command point is captured in Canalzone the
+	above message (in the custom rules section) is not transmitted. Canalzone uses the <B>Titles.txt</B> file, and so only transmits the ID of the message.  In the case
+	of <B>Canalzone</B>, the ID is something like <B>#cz_bcap1</B>. That ID stands for blue team captured CP1.  others are <B>#cz_bcap2 #cz_rcap4, #cz_bcap3</B> and so on.  The reason 
+	this is being documented here is to explain why the rul files provided with <B>TFStats</B> have keys that don't look like strings.
+</blockquote>
+
+<H4><IMG height=13 src="bullet.gif" width=10> What are the other properties of a trigger?</H4>
+<blockquote>
+	The value property is described the previous section. It determines a trigger's <i>relative</i> value with respect to the other triggers of that rule.  Thus value has 
+	no effect unless there are two triggers in a rule.  There is also property called <B>type</B>.
+</blockquote>
+
+<H4><IMG height=13 src="bullet.gif" width=10> What does the Type property do?</H4>
+<blockquote>
+	Trigger's type property controls which events are scanned for the key matches.  There are 3 possible values for type.  FullSearch ( the default) which is the most useful type,
+	Broadcast and Goal. Fullsearch means that every event is scanned to see if it matches the key string.  See <a href="#fullsearch">below</a> for a description of how to use fullsearch and other advanced matching techniques.
+	Broadcast means that broadcasts will be scanned for the key string(s).  Goal means that the key string(s) specify names of goals, instead
+	of broadcast text.  If any goal named by a key is activated, this rule is triggered. For example in Well, when team 2 captures the enemy's flag, a goal called 
+	"team 2 dropoff" is activated. Therefore, if you want to give an award for the most flag caps in Well, you'd use a rule that looked like this:
+	<blockquote>
+			<h5>Award<BR>
+		{<BR>
+			name = "Flag Cap";<BR>
+			noWinnerMessage = "No one captured any flags!";<BR>
+			extraInfo = "%player captured the enemy flag %number times!";<BR><BR>
+
+			trigger<BR>
+			{<BR>	
+				type = goal;<BR>
+				key = "team one dropoff";<BR>
+				key = "team two dropoff";<BR>
+			}<BR>
+		}<BR></h5>
+	</blockquote>
+	Whenever either of the goals, "team one dropoff" or "team two dropoff" are activated the player who activated them (the one who captured the flag) has 
+	his counter incremented by the trigger's value.  If value is not specified (as it isn't above), the default value of value is 1.
+</blockquote>
+
+<H4><IMG height=13 src="bullet.gif" width=10> Why would I want multiple triggers?</H4>
+<blockquote>
+	If you wanted to have two distinct events affect the outcome of one award.  For example, if I wanted to make a blue biased Award, I could do the following:
+	<blockquote>
+		<h5>Award<BR>
+		{<BR>
+			name = "Flag Cap";<BR>
+			noWinnerMessage = "No one captured any flags!";<BR>
+			extraInfo = "%player captured the enemy flag %number times!";<BR><BR>
+
+			trigger<BR>
+			{<BR>
+				type = goal;<BR>
+				value=2;<BR>
+				key = "team one dropoff";<BR>
+			}<BR>
+			trigger<BR>
+			{<BR>
+				type = goal;<BR>
+				value=1;<BR>
+				key = "team two dropoff";<BR>
+			}<BR>
+		}<BR></h5>
+	</blockquote>
+	Notice that team one gets twice as many "points" for each flag capture as does team two.  This would make it twice as easy for a blue player to win the award
+	for most captures because a red player would have to capture twice as many flags to win it.  
+</blockquote>	
+<H4><IMG height=13 src="bullet.gif" width=10> Why don't Custom Rules work with Hunted?</H4>
+<blockquote>
+They don't because of the way hunted was constructed, the player who killed the hunted is not 
+mentioned anywhere in the broadcast or in any sort of goal activation, therefore there is no 
+way to write a custom award for that.<BR>
+</blockquote>
+
+<a name=fullsearch><H4><IMG height=13 src="bullet.gif" width=10> Can I search for other things, other than goal activations and/or broadcasts? or What is the FullSearch type? </H4></a>
+<blockquote>
+The FullSearch trigger type will search every event for the specified key string. If using the full search  trigger type, you can use <i>regular expressions</i> in your
+key string. See below for more info. the full search type also allows you to match event arguments to custom variables.  Also, you can specify match strings for each
+variable itself. Here is an example.  In this example, the award will be given to the WEAPON that kills the most players. (Yes, weapons can now get awards too!)
+<blockquote>
+		<h5>Award<BR>
+{<BR>
+	name = "Most Used Weapon";<BR>
+	noWinnerMessage = "No weapons were used during this match!";<BR>
+	extraInfo = "%score people were killed by %winners";<BR>
+<BR>
+	trigger<BR>
+	{<BR>
+		type = fullsearch;<BR>
+		key = "%killer killed %killee with %weapon";<BR>
+		winnerVar="%weapon";<BR>
+	}<BR>
+}<BR>
+</h5>
+	</blockquote>
+
+</blockquote>
+
+<a name=regexp><H4><IMG height=13 src="bullet.gif" width=10> What are regular expressions and how do I use them?</H4></a>
+<blockquote>
+Regular expressions are a powerful tool for pattern matching. Using regular expressions you can define an expression that describes a pattern you'd like
+to match and a regular expression searching tool will use that expression and attempt to match it against strings.   For the syntax of the regular expressions
+that TFStats uses, go <a href="regexp.html"><u>here</u></a>.  To tell TFStats to use regular expression matching prefix the match pattern with <b> !! </b>. 
+Here is an example illustrating the use of regular expressions AND specifying match patterns for certain variables:
+<blockquote>
+<h5>Award <BR>
+{<BR>
+	name = "Pak Grabber";<BR>
+	noWinnerMessage = "no one grabbed any paks!";<BR>
+	extraInfo = "%winner grabbed %score paks!";<BR>
+	<BR>
+	trigger<BR>
+	{<BR>
+		type= fullsearch;<BR>
+		winnerVar="%plr_grabber";<BR>
+		key = "%plr_grabber activated the goal %goal";<BR>
+		%goal="!!(spawn_pak|i_p_t)";  // this is a match pattern for %goal. this trigger will only fire if %goal matches this pattern.<BR>	
+	}<BR>
+}<BR>
+</h5>
+</blockquote>
+This trigger will match whenever a player activates EITHER "spawn_pak" or "i_p_t".  Note that regular expressions cannot be used in the key string, only in
+the match patterns for variables.  This is quite a simple use of regular expressions. You could set %goal to <b>"!!.*pak.*"</b>, and that would match any goal with the
+word <b>pak</b> in it.  For a reference of the regular expression syntax that TFStats uses, go <a href="regexp.html"><u>here</u></a>.
+</blockquote>
+
+
+
+<H4><IMG height=13 src="bullet.gif" width=10> I don't understand at all, what is going on?</H4>
+<blockquote>
+See below for Help.
+</blockquote>
+
+<HR>
+
+<A NAME="help"><H3>Help</H3></A>
+<blockquote>
+	Please do not contact Sierra's technical support with TFStats questions.
+</blockquote>
+<BR><HR>
+<BR><BR></blockquote>
+</BODY>
+</HTML>

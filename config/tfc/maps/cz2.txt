@@ -1,0 +1,13 @@
+Canalzone 2 - Territorial Control
+
+Objective: Take Flags from your Base
+and place them on the Command Points
+situated throughout the map. Use the
+map in your base to see who owns
+each territory.
+
+Scoring: 1 point for every 30 seconds
+you hold a Command Point.
+
+Other Notes: Flag carriers move at 
+half-speed. 

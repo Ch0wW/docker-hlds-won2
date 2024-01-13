@@ -1,0 +1,376 @@
+TFStats v2.0
+-Valve LLC
+
+_____________
+Table of Contents
+I. About TFStats
+II. Installation/Before Use
+III. Running TFStats
+IV. TFStats Output
+V. The Report
+VI. Using Custom Rules
+VII. Advanced Custom Rule Stuff
+VIII. Help
+
+_____________
+I. About TFStats
+__
+What is TFStats?
+TFStats is a program that generates an HTML report of a Team Fortress match.
+
+Who is TFStats for?
+It is designed for a player who recently played a TFC match and wants to see
+how he and his friends fared in the match. During the match, they were too 
+busy to keep track of who was killing whom, and who was capturing which 
+flag, etc.
+
+Does the player run TFStats?
+No, TFStats is a server-side application. The server op must run the program
+on the logfiles his server generates and make the report available via the 
+web. If the server op has done so, a player can point his browser to the 
+report on the web and view how well he did against the others, and how useful
+he was to his team, etc.  
+
+Who is this document for?
+This document is written for server ops who want to 
+run TFStats either to browse match reports themselves, or make the reports 
+available to the people who play on their servers.
+
+_____________
+II. Installation/Before Use
+__
+How do I install TFStats?
+TFStats is installed along with the Half-Life patch it accompanies.TFStats 
+was written to be easy to install and use,  the only file required to use it is 
+TFStats.exe itself.  However, to use custom rules (see Custom Rules below) you
+must also have the custom rule files (also explained below). All other files 
+necessary for correct operation such as gifs and  javascript source files are 
+embedded in the executable and will be automatically generated whenTFStats
+is run. Thus TFStats can be relocated/reinstalled by copying TFStats.exe and 
+any rule files you may use to which ever directory you want.
+
+Should I make any changes to my cfg files?
+Yes! It is very important that you do NOT have "log on" in either server.cfg
+or listenserver.cfg.  Because those files are executed late in the level
+loading process, some important data will not be logged.  Even if logging
+is turned on beforehand, these files will reset it (basically, turn it off 
+then back on again) so the important data is lost anyway.  Just make sure
+that "log on" is NOT in either of those files.  Instead put it in 
+autoexec.cfg. 
+
+
+_____________
+III.  Running TFStats
+__
+How do I run TFStats under Windows?
+Method 1: Run the executable file with the name of a logfile specified as a 
+command line parameter. For example:
+	TFStats.exe L0726012.log
+If you use this method, you can also specify an output folder to tell the program
+where to put all the files it generates. For example:
+	TFStats.exe L0726012.log outputDir=c:\TFStatsReports
+If you don't specify a folder, it will output files into the directory that 
+it is running from.
+
+Method 2: Drag and drop a log file onto the TFStats icon.  This will cause the 
+program to put all the files into the current directory.
+
+
+How do I run TFStats under Linux?
+Run the binary with the name of a logfile specified as a a command line 
+parameter. For example:
+	tfstats_l L0726012.log 
+If you use this method, you can also specify an output folder to tell the program
+where to put all the files it generates. For example:
+	TFStats.exe L0726012.log outputDir=/root/tfstats/reports
+If you don't specify a folder, it will output files into the directory that 
+it is running from.
+
+What is the outputdir?
+OutputDir is a switch to tell TFStats to put the files in the location specified
+after the = sign
+
+What is a switch?
+Switches are ways to get TFStats to do different stuff depending on what you
+want.  Currently only 2 switches are available:
+OutputDir is explained above.
+DisplayMM2: This switch tells tfstats whether or not to display team_messages
+in the dialog readout.  Setting this switch to "yes" will make tfstats display
+team messages, setting it to no will ensure that team_messages are omitted from
+the readout.  Here is an example of how to use it:
+TFStats.exe L0726012.log outputDir=/root/tfstats/reports DisplayMM2=no
+or
+TFStats.exe L0726012.log outputDir=/root/tfstats/reports DisplayMM2=yes
+
+
+_____________
+IV.  TFStats Output
+__
+What does TFStats produce?
+After TFStats has done it's thing, you'll find several new files in whichever
+directory you specified.  The HTML files are the actual report itself.  The
+rest of the files are support files to make the report look and work better. 
+The files in the img directory are all the images that the report uses. The 
+CSS file and JS file are support files, containing style parameters and 
+javascript source code respectively.  
+
+How do I look at the report? 
+index.html is the starting page of the report. Just load up index.html in your 
+favorite browser (see below for Browser compatibility issues) and there you 
+have the report. You can navigate the report like any web page. The links on
+the left control what section you are viewing.  On the top, info about the 
+match itself is displayed.
+
+How do I let players on my server look at the report?
+This is highly subjective.  Basically you must put the page on the web 
+somewhere. How you do this varies from person to person.  If you do not
+have a webpage, you could e-mail the files (don't forget the img directory!)
+to players who request them.
+
+What browsers are compatible with the report?
+TFStats was developed and tested primarily on Microsoft Internet Explorer 5
+thus it looks best on IE5, however, IE4 and Netscape 4 were both tested and
+both are supported as well. In general, for a browser to work with TFStats, 
+it needs to support HTML 4.0 with Cascading Style Sheets and it needs to be 
+able to execute Javascript 1.2 scripts. So, in conclusion, the recommended
+browser is IE5. If you have IE5, you will be getting the full TFStats 
+experience.  However, the other browsers mentioned above work too.
+
+_____________
+V.  The Report
+__
+
+I'm looking at the report, what is all this stuff?
+Be more specific.
+
+What is rank?
+A player's rank is the number kills they got, minus the number of deaths,
+divided by the amount of time he was playing. Ranks below 0 signify
+that the player died more times than he killed.  The team's average rank is 
+just that, the average rank of the team.  More specifically the formula for
+calculating rank is as follows:  ((Kills - Deaths)* 1000) / secondsPlaying.
+This amounts to the player's kills-deaths per 1000 seconds.
+
+What do the awards mean?
+Awards are given out to players who showed exemplary service in certain
+areas.  There is one or two awards for each class, and several awards that 
+aren't specific to one class.  
+Here is each award described in full:
+Class Awards:
+	· Scout: 
+		Survivalist Award. This award is given to the scout who dies the least. 
+	· Sniper: 
+		Sharpshooter Award.  This award is given to the best sniper.  All of a
+			sniper's snipe-shot kills are totaled, with Headshots being worth 3 
+			normal shots, and the highest total wins the award.
+	· Soldier: 
+		Rocketry Award.  The soldier who gets the most kills with his trusty 
+			rocket launcher gets this award.
+	· Demoman: 
+		Grenadier Award: This is given to the demoman who killed the most 
+			people with the grenade launcher.
+		Demolitions Award:  This is given to the demoman who gets the most 
+			kills with the detpack
+	· Medic:
+		LifeSaver Award:  This is given to the medic who cured the most 
+			infections, healed the most people, etc.
+		Biological Warfare Award: This is given to the medic who got the most 
+			kills from infections (his medpack weapon)
+	· HWGuy:
+		Assault Cannon Award (Swiss cheese award): This award is given to the
+			HWGuy who killed the most people with his assault cannon
+	· Pyro:
+		Blaze of Glory Award: This is given to the pyro who killed the most 
+			people with flames.
+	· Spy:
+		Assassin Award: This is given to the spy who killed the most people 
+			with his knife
+	· Engineer:
+		Best Placement Award: This is given to the Engineer who has the most 
+			kills from any sentry gun he has built.
+		Worst Placement Award: This is given to the Engineer who has to 
+			rebuild his buildings the most.  In other words, to the engineer who 
+			built the most buildings.
+ 
+	Non-Class-Specific Awards:
+		· Kevorkian Award: This "award" is given to the player who kills the most teammates.  
+		· Kamikaze Award: This "award" is given to the player who kills themselves the most times.
+		· BigMouth Award: This is given to the player who talks the most.
+
+
+
+_____________
+VI.  Using Custom Rules
+__
+Note: Custom rules are considered an "advanced" topic.  They are not required
+for TFStats to function, but they can enhance the generated report.
+
+What is a custom rule?
+TFC is a flexible game and supports more than just Capture The Flag style maps.
+Take Canalzone or Rock for example, neither of them have anything to do with 
+capturing a flag.  Therefore, hardcoding flag capture support into TFStats 
+would be silly.  Custom rules are in TFStats to allow more than just flag 
+caps to be recognized and awarded in the final report. For example, if a map-
+maker created a map in which the goal was to rescue a cat from a tree, then 
+he could also create a custom rule that awarded the player who rescued the 
+cat the most often in the final report. 
+
+Where do I put custom rules?
+Custom rules are contained in custom rule files which need to be placed in the
+same directory as TFStats.exe.  The files will have the name 
+"tfc.<mapname>.rul". For example, 2fort's custom rule file is called 
+tfc.2fort.rul.  
+
+How do I write a custom rule?
+The best way to learn would be by example.  Here is an example custom rule that 
+awards the person who captured command points 1 and 2 for the blue team the 
+most often in Canalzone 2: 
+	
+	Award
+	{
+		name = "Command Point 1 Capture";
+		noWinnerMessage = "Command point 1  remained neutral throughout the match";
+		extraInfo = "%player captured CP 1 %number times!";
+
+		trigger
+		{
+			key= "%s[blue team] captured command point 1";
+		}
+	}
+
+What does THAT mean?
+"Award": The first line of the rule specifies what type it is.  Unfortunately,
+TFStats only supports one type currently;  Award.   "Award" tells TFStats 
+that this rule will be defining a custom award to be displayed in the awards
+section of the report.  
+"name": this defines the name of the award.  This is what is displayed in the 
+awards section. 
+"noWinnerMessage": if no one wins the award, then this message will be 
+displayed in lieu of giving out an award.
+"extraInfo": this is displayed with the award.  The two %words represent
+variables that are available. %player evaluates to the winning player's name
+and %number evaluates to how many times the player triggered this rule. 
+"trigger": this defines a trigger for this rule.  A trigger is how you actually
+define who wins the award. triggers consist of keys and several other values
+that are described below in the advanced section.
+"key":  This is a string to search for in any broadcasts that are triggered by
+players. In Canalzone when a player captures a command point, the server
+broadcasts a message to all clients saying "%s[blue team] captured command
+point 1"  (if it was CP 1).  With the player's name attached. So when TFStats
+encounters that in the log file, it will the player whose name is attached to 
+that message, and increment their counter for this award.  You can have
+more than 1 key, just define as many as you like.
+
+Why does that look different than the tfc.cz2.rul that is provided?
+This is due to the interference of Titles.txt.  See below for details.
+
+____________
+VII.  Advanced Custom Rule Stuff
+__
+What's the deal with Titles.txt?  
+or
+Why do the provided rul files have keys like #cz_bcap1?
+
+Titles.txt is a text file provided by Valve to help making translation between
+english and non-english versions of half-life easier. However, it is of
+concern because it changes what is actually broadcasted to the client in
+broadcasts.  For example, when a command point is captured in Canalzone the
+above message (in the custom rules section) is not transmitted. Canalzone uses
+the Titles.txt file, and so only transmits the ID of the message.  In the case
+of Canalzone, the ID is something like #cz_bcap1. That ID stands for blue team
+captured CP1.  others are #cz_bcap2 #cz_rcap4, #cz_bcap3 and so on.  The 
+reason this is being documented here is to explain why the rul files provided
+with TFStats have keys that don't look like strings.
+
+Can you have multiple triggers per award?
+Of course.  Just define a second trigger after the first one.  The rule will
+be triggered by either one of the triggers now.
+
+Can one trigger be worth more than another?
+Yes, triggers have a property called "value" that you can set simply by
+inserting this line into the trigger somewhere.
+	value=1;  //or any other value you'd like
+
+What are the other properties of a trigger?
+The value property is described the previous section. It determines a
+trigger's _relative_ value with respect to the other triggers of that rule.
+Thus value has no effect unless there are two triggers in a rule.
+There is also property called "type".
+
+What does the Type property do?
+Trigger's type property controls which events are scanned for the key matches.
+There are only 2 possible values for type.  Broadcast, which is the default 
+value and Goal.  Broadcast means that broadcasts will be scanned for the key 
+string(s).  Goal means that the key string(s) specify names of goals, instead
+of broadcast text.  If any goal named by a key is activated, this rule is 
+triggered. For example in Well, when team 2 captures the enemy's flag, a goal
+called "team 2 dropoff" is activated. Therefore, if you want to give an award
+for the most flag caps in Well, you'd use a rule that looked like this:
+
+	Award
+	{
+		name = "Flag Cap";
+		noWinnerMessage = "No one captured any flags!";
+		extraInfo = "%player captured the enemy flag %number times!";
+
+		trigger
+		{
+			type = goal;
+			key = "team one dropoff";
+			key = "team two dropoff";
+		}
+	}
+
+Whenever either of the goals, "team one dropoff" or "team two dropoff" are 
+activated the player who activated them (the one who captured the flag) has 
+his counter incremented by the trigger's value.  if value is not specified (as
+it isn't above), the default value of value is 1.
+
+
+Why would I want multiple triggers?
+If you wanted to have two distinct events affect the outcome of one award.
+For example, if I wanted to make a blue biased Award, I could do the following
+
+	Award
+	{
+		name = "Flag Cap";
+		noWinnerMessage = "No one captured any flags!";
+		extraInfo = "%player captured the enemy flag %number times!";
+
+		trigger
+		{
+			type = goal;
+			value=2;
+			key = "team one dropoff";
+		}
+		trigger
+		{
+			type = goal;
+			value=1;
+			key = "team two dropoff";
+		}
+	}
+
+Notice that team one gets twice as many "points" for each flag capture as does
+team two.  This would make it twice as easy for a blue player to win the award
+for most captures because a red player would have to capture twice as many 
+flags to win it.
+
+Why don't Custom Rules work with Hunted?
+They don't because of the way hunted was constructed, the player who killed
+the hunted is not mentioned anywhere in the broadcast or in any sort of goal
+activation, therefore there is no way to write a custom award for that.
+
+
+I don't understand at all, what is going on?
+See below for Help
+
+____________
+VIII.  Help
+__
+
+Please do not contact Sierra's technical support with TFStats questions, they
+will not be able to help you at all.
+
+For any support questions, feature suggestions (for future versions) and any
+feedback in general, e-mail tfstats@valvesoftware.com.

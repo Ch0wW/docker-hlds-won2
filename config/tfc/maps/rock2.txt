@@ -1,0 +1,13 @@
+The Rock - Capture The Flag Variant
+
+Objective: Steal the Keycard from the enemy
+Warden's office. Take it across to the other
+side of the enemy Base and hit the switch to
+release the Gas. Don't bring the Keycard back
+to your own Base.
+
+Scoring: 15 points for each Gas Release.
+
+Other Notes: To survive the Gas, get a
+protective suit from behind the marked 
+doors, or hide under the water.

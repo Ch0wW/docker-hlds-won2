@@ -1,0 +1,354 @@
+//TITLES FOR DMC
+// Position command $position x y 
+// x & y are from 0 to 1 to be screen resolution independent
+// -1 means center in each dimension
+// Effect command $effect <effect number>
+// effect 0 is fade in/fade out
+// effect 1 is flickery credits
+// effect 2 is write out (training room)
+// Text color r g b command $color
+// fadein time fadeout time / hold time
+// $fadein (message fade in time - per character in effect 2)
+// $fadeout (message fade out time)
+// $holdtime (stay on the screen for this long)
+
+
+
+//DMC Secret messages
+$position -1 -1
+$effect 0
+$color 254 201 16
+$fadein 0.1
+$holdtime 1.5
+$fadeout 1
+
+
+SECRETAREA
+{
+You Found A Secret Area!
+}
+
+Team_Menu_Join
+{
+Please Select a Team:
+
+1. Red
+2. Blue
+5. Auto-Team
+}
+
+Team_Menu_Join_IG
+{
+Please Select a Team:
+
+1. Red
+2. Blue
+5. Auto-Team
+
+0. Cancel
+}
+
+Unassigned
+{
+Unassigned
+}
+
+Spec_Mode_Inset0
+{
+Inset Window Off
+}
+
+Spec_Mode_Inset1
+{
+Inset Window On
+}
+
+Spec_Mode_Inset2
+{
+Inset Window Wide Screen
+}
+
+Spec_Mode_Inset3
+{
+Inset Window Map
+}
+
+Spec_Mode_Inset4
+{
+Inset Window Map Chase
+}
+
+Spec_Mode1
+{
+Locked Chase-Camera
+}
+
+Spec_Mode2
+{
+Free Chase-Camera
+}
+
+Spec_Mode3
+{
+Free Roaming
+}
+
+Spec_Mode4
+{
+Directed Mode
+}
+
+Spec_Mode5
+{
+Free Map Mode
+}
+
+Directed
+{
+Auto
+}
+
+Spec_Mode6
+{
+Chase Map Mode
+}
+
+Spec_NoTarget
+{
+No valid targets. Cannot switch to Chase-Camera Mode.
+}
+
+Spec_Help_Title
+{
+Spectator Mode
+}
+
+Spec_Help_Text
+{
+Use the following keys to change view styles:
+
+ FIRE1 - Chase next player
+ FIRE2 - Chase previous player
+ JUMP - Change view modes
+ USE - Change inset window mode
+ 
+ DUCK  - Enable spectator menu
+  
+In Overview Map Mode move around with:
+
+ MOVELEFT - move left
+ MOVERIGHT - move right
+ FORWARD - zoom in
+ BACK - zoom out
+ MOUSE - rotate around map/target
+}
+
+Spec_Help
+{
+ENTER to Play  FIRE for Next Target  ALT-FIRE for Prev Target  JUMP to Change Modes
+}
+
+Spec_Only_Help
+{
+DUCK to Change Inset Mode FIRE for Next Target  ALT-FIRE for Prev Target  JUMP to Change Modes
+}
+
+Spec_Map_Free_Help
+{
+DUCK to Change Inset Mode  FIRE to Zoom In  ALT-FIRE to Zoom Out  JUMP to Change Modes
+}
+
+Spec_Help2
+{
+Your text messages can only be seen by other Spectators
+}
+
+Spectators
+{
+Spectators
+}
+
+TEAMS
+{
+TEAMS
+}
+
+PLAYERS
+{
+PLAYERS
+}
+
+SCORE
+{
+FRAGS
+}
+
+DEATHS
+{
+DEATHS
+}
+
+LATENCY
+{
+LATENCY
+}
+
+Menu_OK
+{
+OK
+}
+
+Menu_Cancel
+{
+CANCEL
+}
+
+Quad_Damage_Off
+{
+Quad Damage is wearing off
+}
+
+BioSuit_Off
+{
+Air supply in Biosuit expiring
+}
+
+Ring_Shadows_Off
+{
+Ring of Shadows magic is fading
+}
+
+Protection_Off
+{
+Protection is almost burned out
+}
+
+Get_Health
+{
+You receive %s health
+}
+
+Additional_Health
+{
+10 addition health
+}
+
+Bonus_Power
+{
+%s attains bonus powers!!!
+}
+
+You_Get_SS
+{
+You get the Double-barrelled Shotgun, %s shells, %s nails, %s rockets, %s cells. 
+}
+
+You_Get_NG
+{
+You get the Nailgun, %s shells, %s nails, %s rockets, %s cells. 
+}
+
+You_Get_SG
+{
+You get the Super Nailgun, %s shells, %s nails, %s rockets, %s cells. 
+}
+
+You_Get_GL
+{
+You get the Grenade Launcher, %s shells, %s nails, %s rockets, %s cells. 
+}
+
+You_Get_RL
+{
+You get the Rocket Launcher, %s shells, %s nails, %s rockets, %s cells. 
+}
+
+You_Get_LG
+{
+You get the Thunderbolt, %s shells, %s nails, %s rockets, %s cells. 
+}
+
+You_Get_NoGun
+{
+You get %s shells, %s nails, %s rockets, %s cells. 
+}
+
+No_Weapon
+{
+No weapon.
+}
+
+No_Ammo
+{
+Not enough ammo.
+}
+
+Mic_Volume
+{
+Mic Volume
+}
+
+Speaker_Volume
+{
+Speaker Volume
+}
+
+Voice_Properties
+{
+Voice Properties
+}
+
+VOICE
+{
+VOICE
+}
+
+Map_Description_not_available
+{
+Map Description not available.
+}
+
+Player
+{
+player
+}
+
+Player_plural
+{
+players
+}
+
+Muted
+{
+You have muted %s.
+}
+
+Unmuted
+{
+You have unmuted %s.
+}
+
+No_longer_hear_that_player
+{
+You will no longer hear that player speak.
+}
+
+Spec_Duck
+{
+Press DUCK for Spectator Menu
+}
+
+Spec_Auto
+{
+Auto
+}
+
+Spec_Slow_Motion
+{
+Slow Motion
+}
+
+Spec_Replay
+{
+Instant Replay
+}

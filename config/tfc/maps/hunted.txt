@@ -1,0 +1,13 @@
+Hunted - Assassination / Escort
+
+Objective: The Hunted must reach the truck
+alive. The Assassins need to kill The Hunted.
+The Bodyguards need to protect The Hunted.
+
+Scoring: If The Hunted dies, the Assassins get
+25 points. If The Hunted reaches the truck, 
+he and the Bodyguards get 50 points.
+
+Other Notes: Whenever The Hunted dies or
+makes it to the truck, all players are moved
+back to their starting positions.

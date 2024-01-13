@@ -5,10 +5,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-		volumes:
-		  - ./config/cstrike:/server/hlds_l/cstrike 
+    volumes:
+      - ./config/cstrike:/server/hlds_l/cstrike 
+      - ./config/dmc:/server/hlds_l/dmc 
+      - ./config/tfc:/server/hlds_l/tfc
     ports:
       - 27015:27015
       - 27015:27015/udp
     command:
-			- ./hlds_run -port 27015 +game cstrike +map de_dust2
+      - ./hlds_run -port 27015 -game cstrike +map de_dust2 +maxplayers 16

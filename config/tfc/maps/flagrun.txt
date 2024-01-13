@@ -1,0 +1,13 @@
+War - Control the flags
+
+Objective: Bring all four flags in the map
+to the capture point in your base to win 
+the round. Secured flags can be stolen from
+the enemy base
+
+Scoring: Returning a flag - 2 points 
+	 Securing a neutral flag - 5 points
+	 Capturing a stolen flag - 10 points
+
+Other Notes: When a flag carrier is killed,
+the flag returns to the neutral flag room.

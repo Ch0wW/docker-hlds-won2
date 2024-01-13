@@ -1,0 +1,267 @@
+<HTML>
+<HEAD>
+<TITLE>Regular Expression syntax for TFStats</TITLE>
+<STYLE TYPE="text/css">
+  body {
+    font-family : "Tahoma, Arial, Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+	color : #BBBBBB;
+    }
+
+  A:link {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+    font-weight : bold;
+    color : #CC6600;
+	text-decoration: none;
+    }
+
+  A:visited {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+    font-weight : bold;
+    color : #CC6600;
+	text-decoration: none;
+    }
+
+  A:hover {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+    font-weight : bold;
+    color : #FF9900;
+	text-decoration: none;
+    }
+
+  TD {
+    font-family : "Tahoma, Arial, Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 10pt;
+    fontsize : 11pt;
+	color : #BBBBBB;
+    }
+
+  H3 {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 15pt;
+    fontsize : 16pt;
+    font-weight : bold;
+    color : #CC6600;
+	text-decoration: none;
+    }
+   H4 {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 11pt;
+    fontsize : 12pt;
+    font-weight : bold;
+    color : #CC6600;
+	text-decoration: none;
+    }
+   H5 {
+	font-family : "Tahoma","Arial","Helvetica";
+    fontfamily : "Tahoma","Arial","Helvetica";
+    font-size : 8pt;
+    fontsize : 9pt;
+    font-weight : normal;
+    color : #CC6600;
+	text-decoration: none;
+    }
+</STYLE>
+</HEAD>
+<BODY BGCOLOR="#000000">
+
+
+<P>
+TFStats v2.0 allows the use of regular expressions in match patterns.  This document describes the syntax used for those regular expressions.
+The regular expression searching/matching tool that TFStats uses is called Regex++.
+<I>
+<PRE>
+Regex++, regular expression library.
+(version 2.12, 02 August 1999)
+Copyright (c) 1998-9
+Dr John Maddock
+</PRE>
+</I>
+<hr>
+<b> Note: To preserve a modicum of simplicity,  this document is heavily abridged. For the FULL specification of the regular expression syntax that can be used, please see <a href="http://ourworld.compuserve.com/homepages/John_Maddock/regex.htm#syntax">http://ourworld.compuserve.com/homepages/John_Maddock/regex.htm#syntax</a>
+<hr>
+<I><FONT FACE="Arial"><H3><A NAME="syntax"></A>Regular expression syntax</H3>
+</I></FONT><P>This section covers the regular expression syntax used by this library, this is a programmers guide, the actual syntax presented to your program's users will depend upon the flags used during expression compilation.</P>
+<I><P>Literals</P>
+</I><P>All characters are literals except: ".", "*", "?", "+", "(", ")", "{", "}", "[", "]", "^" and "$". These characters are literals when preceded by a "\". A literal is a character that matches itself, or matches the result of traits_type::translate(), where traits_type is the traits template parameter to class reg_expression.</P>
+<P>&nbsp;</P>
+<I><P>Wildcard</P>
+</I><P>The dot character "." matches any single character except a newline character
+<P>&nbsp;</P>
+<I><P>Repeats</P>
+</I><P>A repeat is an expression that is repeated an arbitrary number of times. An expression followed by "*" can be repeated any number of times including zero. An expression followed by "+" can be repeated any number of times, but at least once. An expression followed by "?" may be repeated zero or one times only.  When it is necessary to specify the minimum and maximum number of repeats explicitly, the bounds operator "{}" may be used, thus "a{2}" is the letter "a" repeated exactly twice, "a{2,4}" represents the letter "a" repeated between 2 and 4 times, and "a{2,}" represents the letter "a" repeated at least twice with no upper limit. Note that there must be no white-space inside the {}, and there is no upper limit on the values of the lower and upper bounds. All repeat expressions refer to the shortest possible previous sub-expression: a single character; a character set, or a sub-expression grouped with "()" for example.</P>
+<P>Examples: </P>
+<P>"ba*" will match all of "b", "ba", "baaa" etc.</P>
+<P>"ba+" will match "ba" or "baaaa" for example but not "b".</P>
+<P>"ba?" will match "b" or "ba".</P>
+<P>"ba{2,4}" will match "baa", "baaa" and "baaaa".</P>
+<P>&nbsp;</P>
+<I><P>Parenthesis</P>
+</I><P>Parentheses serve two purposes, to group items together into a sub-expression, and to mark what generated the match. For example the expression "(ab)*" would match all of the string "ababab". 
+<P>&nbsp;</P>
+<I><P>Alternatives</P>
+</I><P>Alternatives occur when the expression can match either one sub-expression or another, each alternative is separated by a "|".  Each alternative is the largest possible previous sub-expression; this is the opposite behaviour from repetition operators. </P>
+<P>Examples:</P>
+<P>"a(b|c)" could match "ab" or "ac".</P>
+<P>"abc|def" could match "abc" or "def".</P>
+<P>&nbsp;</P>
+<I><P>Sets</P>
+</I><P>A set is a set of characters that can match any single character that is a member of the set. Sets are delimited by "[" and "]" and can contain literals, character ranges, character classes, collating elements and equivalence classes. Set declarations that start with "^" contain the compliment of the elements that follow.</P>
+<P>Examples:</P>
+<P>Character literals:</P>
+<P>"[abc]" will match either of "a", "b", or "c".</P>
+<P>"[^abc] will match any character other than "a", "b", or "c".</P>
+<P>Character ranges:</P>
+<P>"[a-z]" will match any character in the range "a" to "z".</P>
+<P>"[^A-Z]" will match any character other than those in the range "A" to "Z".</P>
+<TABLE CELLSPACING=0 BORDER=0 CELLPADDING=7 WIDTH=638>
+<TR><TD WIDTH="5%" VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>[:alnum:]</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>Any alpha numeric character.</TD>
+<TD WIDTH="5%" VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>[:alpha:]</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>Any alphabetical character a-z and A-Z. Other characters may also be included depending upon the locale.</TD>
+<TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>[:blank:]</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>Any blank character, either a space or a tab.</TD>
+<TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>[:cntrl:]</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>Any control character.</TD>
+<TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>[:digit:]</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>Any digit 0-9.</TD>
+<TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>[:graph:]</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>Any graphical character.</TD>
+<TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>[:lower:]</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>Any lower case character a-z. Other characters may also be included depending upon the locale.</TD>
+<TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>[:print:]</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>Any printable character.</TD>
+<TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>[:punct:]</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>Any punctuation character.</TD>
+<TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>[:space:]</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>Any whitespace character.</TD>
+<TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>[:upper:]</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>Any upper case character A-Z. Other characters may also be included depending upon the locale.</TD>
+<TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>[:xdigit:]</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>Any hexadecimal digit character, 0-9, a-f and A-F.</TD>
+<TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>[:word:]</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>Any word character - all alphanumeric characters plus the underscore.</TD>
+<TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>[:unicode:]</TD>
+<TD WIDTH="50%" VALIGN="TOP">
+<P>Any character whose code is greater than 255, this applies to the wide character traits classes only.</TD>
+<TD VALIGN="MIDDLE">
+<P>&nbsp;</TD>
+</TR>
+</TABLE>
+<P>There are some shortcuts that can be used in place of the character classes:</P>
+<P>\w in place of [:word:]</P>
+<P>\s in place of [:space:]</P>
+<P>\d in place of [:digit:]</P>
+<P>\l in place of [:lower:]</P>
+<P>\u in place of [:upper:]</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

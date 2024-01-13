@@ -1,0 +1,10 @@
+Epicenter - Reverse CTF
+
+Objective: Take your team's flag from the
+spawnroom to your APC at the other end of
+the map. The enemy is trying to do the same.
+The game resets when one team scores.
+Dropped flags sit for 30 seconds before
+returning to base.
+
+Scoring: 10 points per capture.
