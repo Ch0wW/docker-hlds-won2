@@ -1,7 +1,10 @@
 FROM i386/debian:jessie-slim
 
+# Recently Debian required to set apt repository to archive.debian.org. So, add a link to it.
+RUN echo "deb http://archive.debian.org/debian jessie main contrib non-free" > /etc/apt/sources.list
+
 # 1) INSTALL BASICS
-RUN apt-get update && apt-get install -y wget
+RUN apt-get update && apt-get install -y wget --force-yes
 
 # 2) Create user
 RUN groupadd -r hlds

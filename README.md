@@ -1,5 +1,5 @@
 # docker-hlds-won2
-A docker image that creates a WON2 Half-Life / Counter-Strike 1.5 server for you.
+A docker image that automates setting up a 1.1.1.0 Half-Life / Counter-Strike 1.5 server, using the WON2 protocol.
 
 ### Why this docker ?
 
