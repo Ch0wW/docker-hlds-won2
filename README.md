@@ -28,6 +28,7 @@ That is why I created this project, while trying to run this program in a safe e
 - Counter-Strike 1.5 (retail)
 - Counter-Strike 1.4 (retail)
 - Counter-Strike 1.3 (retail)
+- Counter-Strike 1.1 (retail with patch 1.1c)
 - Team Fortress Classic (v1.5)
 
 ### Installation/Usage
@@ -46,13 +47,16 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./config/cstrike:/server/hlds_l/cstrike 
+      - ./config/cstrk11r:/server/hlds_l/cstrk11r
+      - ./config/cstrk13:/server/hlds_l/cstrk13 
+      - ./config/cstrk14:/server/hlds_l/cstrk14
       - ./config/dmc:/server/hlds_l/dmc 
       - ./config/tfc:/server/hlds_l/tfc
     ports:
       - 27015:27015
       - 27015:27015/udp
     command:
-      - ./hlds_run -port 27015 -game cstrike +map de_dust2 +maxplayers 16 +sv_lan 1
+      - ./hlds_run -port 27015 -game cstrike +map de_dust2 +maxplayers 16
 ```
 
 once done, just execute `docker-compose up` to make sure everything works as intended, and you should be good to go.
@@ -64,6 +68,7 @@ Simply go to the `config` folder, and modify the required folders you wish.
 - `config/cstrike` is for Counter-Strike 1.5.
 - `config/cstrk14` is for Counter-Strike 1.4.
 - `config/cstrk13` is for Counter-Strike 1.3.
+- `config/cstrk11r` is for Counter-Strike 1.1.
 - `config/tfc` is for Team Fortress Classic. 
 - `config/dmc` is for Deathmatch Classic. 
 - `config/valve` is for Half-Life. **However, since no server exists for Half-Life WON2 (as of 14/01/2024), it has not been included.** 

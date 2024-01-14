@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./config/cstrike:/server/hlds_l/cstrike 
+      - ./config/cstrk11r:/server/hlds_l/cstrk11r
       - ./config/cstrk13:/server/hlds_l/cstrk13 
       - ./config/cstrk14:/server/hlds_l/cstrk14
       - ./config/dmc:/server/hlds_l/dmc 
