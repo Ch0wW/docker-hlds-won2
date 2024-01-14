@@ -16,7 +16,7 @@ titan.won2.steamlessproject.nl:6003
 
 Auth
 {
-// As for now (Oct 2005) this server isn´t online yet.
+// As for now (Oct 2005) this server isnï¿½t online yet.
 auth.won2.steamlessproject.nl:7002
 }
 
@@ -26,6 +26,9 @@ Master
 	master4.won2.steamlessproject.nl:27010
 	master2.won2.steamlessproject.nl:27010
 	master3.won2.steamlessproject.nl:27010
+	hlmaster.order-of-phalanx.net:27010
+	hlmaster2.order-of-phalanx.net:27010
+	hlmaster3.order-of-phalanx.net:27010
 }
 
 ModServer
