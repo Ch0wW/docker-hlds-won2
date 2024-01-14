@@ -26,7 +26,7 @@ That is why I created this project, while trying to run this program in a safe e
 
 ### Installation/Usage
 
-Simply edit the `docker-config.yml` to add or modify anything you require.
+Simply edit the `docker-compose.yml` to add or modify anything you require.
 
 If you need to change the port of your server, change all occurences (= in `ports` and in the `command` sections)
 
