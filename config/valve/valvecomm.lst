@@ -1,9 +1,13 @@
+//=================
 // Steamless CS Project
 // No-WON / WON2 patch for Players v.2.5
 // October 2005 version D
 //
 // For detailed server information:
 // www.won2.net
+//
+// This is a copy of woncomm.lst for WON2!
+// Modify BOTH woncomm.lst AND valvecomm.lst!!
 //
 
 Titan
