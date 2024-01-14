@@ -26,6 +26,7 @@ That is why I created this project, while trying to run this program in a safe e
 
 ### Included mods
 - Counter-Strike 1.5 (retail)
+- Counter-Strike 1.4 (retail)
 - Counter-Strike 1.3 (retail)
 - Team Fortress Classic (v1.5)
 
@@ -61,6 +62,7 @@ once done, just execute `docker-compose up` to make sure everything works as int
 Simply go to the `config` folder, and modify the required folders you wish.
 
 - `config/cstrike` is for Counter-Strike 1.5.
+- `config/cstrk14` is for Counter-Strike 1.4.
 - `config/cstrk13` is for Counter-Strike 1.3.
 - `config/tfc` is for Team Fortress Classic. 
 - `config/dmc` is for Deathmatch Classic. 

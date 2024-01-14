@@ -8,10 +8,11 @@ services:
     volumes:
       - ./config/cstrike:/server/hlds_l/cstrike 
       - ./config/cstrk13:/server/hlds_l/cstrk13 
+      - ./config/cstrk14:/server/hlds_l/cstrk14
       - ./config/dmc:/server/hlds_l/dmc 
       - ./config/tfc:/server/hlds_l/tfc
     ports:
       - 27015:27015
       - 27015:27015/udp
     command:
-      - ./hlds_run -port 27015 -game cstrike +map de_dust2 +maxplayers 16 +sv_lan 1
+      - ./hlds_run -port 27015 -game cstrike +map de_dust2 +maxplayers 16
