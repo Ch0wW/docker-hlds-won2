@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./config/cstrike:/server/hlds_l/cstrike 
+      - ./config/cstrk13:/server/hlds_l/cstrk13 
       - ./config/dmc:/server/hlds_l/dmc 
       - ./config/tfc:/server/hlds_l/tfc
     ports:

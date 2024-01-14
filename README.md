@@ -20,9 +20,14 @@ That is why I created this project, while trying to run this program in a safe e
 
 ### Features
 * Creates a barebones HLDS Environment using Debian 12 (i386).
-* Includes Deathmatch Classic, Team Fortress Classic, Counter-Strike 1.5 dedicated server files in its vanilla configuration that can be configured outside the docker image.
+* Includes all the dedicated server files in its vanilla configuration that can be configured outside the docker image.
 * Has WON2 patches, and can advertise on dedicated masterservers.
 * Includes Metamod 1.19 with AntiDLFix.
+
+### Included mods
+- Counter-Strike 1.5 (retail)
+- Counter-Strike 1.3 (retail)
+- Team Fortress Classic (v1.5)
 
 ### Installation/Usage
 
@@ -56,6 +61,7 @@ once done, just execute `docker-compose up` to make sure everything works as int
 Simply go to the `config` folder, and modify the required folders you wish.
 
 - `config/cstrike` is for Counter-Strike 1.5.
+- `config/cstrk13` is for Counter-Strike 1.3.
 - `config/tfc` is for Team Fortress Classic. 
 - `config/dmc` is for Deathmatch Classic. 
 - `config/valve` is for Half-Life. **However, since no server exists for Half-Life WON2 (as of 14/01/2024), it has not been included.** 
