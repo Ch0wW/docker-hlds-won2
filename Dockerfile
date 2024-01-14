@@ -26,7 +26,7 @@ WORKDIR /server/hlds_l/
 USER root
 
 COPY patch/* ./
-COPY config/valve/* ./valve/*
+COPY config/valve/* ./valve/
 RUN chmod +x hlds_run
 
 # Then, remove mod folders
