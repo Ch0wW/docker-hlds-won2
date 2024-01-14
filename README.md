@@ -56,10 +56,10 @@ services:
       - 27015:27015
       - 27015:27015/udp
     command:
-      - ./hlds_run -port 27015 -game cstrike +map de_dust2 +maxplayers 16
+      - -port 27015 -game cstrike +map de_dust2 +maxplayers 16
 ```
 
-once done, just execute `docker-compose up` to make sure everything works as intended, and you should be good to go.
+once done, just execute `docker-compose up` to make sure everything works as intended, and you should be good to go. Change also the `user` token so that it is checking with the user and group running the container.
 
 ### Customisation
 
