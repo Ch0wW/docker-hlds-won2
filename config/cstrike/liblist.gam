@@ -10,15 +10,7 @@ type "multiplayer_only"
 nomodels "1"
 nohimodel "1"
 mpentity "info_player_start"
-trainmap "tr_1"
-
-gamedll "dlls\metamod.dll"
-gamedll_linux "dlls/metamod_i386.so"
-
-//===============
-//OFFICIAL DLLs=
-//===============
-//
-//gamedll "dlls\mp.dll"
+gamedll "dlls\mp.dll"
 //gamedll_linux "dlls/cs_i386.so"
-//-------------------------
+gamedll_linux "dlls/metamod_i386.so"
+trainmap "tr_1"
