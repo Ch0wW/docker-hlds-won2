@@ -4,7 +4,7 @@ FROM i386/debian:8-slim
 RUN echo "deb http://archive.debian.org/debian jessie main contrib non-free" > /etc/apt/sources.list
 
 # 1) Install dependencies
-RUN apt-get update && apt-get install -y wget libc6 libstdc++6 --force-yes
+RUN apt-get update && apt-get upgrade -y && apt-get install -y wget libc6 libstdc++6 --force-yes
 
 # 2) Create user
 RUN groupadd -r hlds
