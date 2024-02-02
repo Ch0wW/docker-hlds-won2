@@ -18,3 +18,5 @@ services:
       - 27015:27015/udp
     command:
       - -port 27015 -game cstrike +map de_dust2 +maxplayers 16
+    security_opt:
+      - no-new-privileges:true

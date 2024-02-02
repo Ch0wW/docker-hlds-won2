@@ -60,6 +60,8 @@ services:
       - 27015:27015/udp
     command:
       - -port 27015 -game cstrike +map de_dust2 +maxplayers 16
+    security_opt:
+      - no-new-privileges:true
 ```
 
 Once done, just execute `docker-compose up` to make sure everything works as intended, and you should be good to go. Change also the `user` token so that it is checking with the user and group running the container, to avoid upload issues or potential permission problems.
