@@ -66,9 +66,9 @@ services:
 
 Once done, just execute `docker-compose up` to make sure everything works as intended, and you should be good to go. Change also the `user` token so that it is checking with the user and group running the container, to avoid upload issues or potential permission problems.
 
-If you need to rebuild the image (for instance for testing or to add a few additional things), just type `docker-compose build` and you should be good to go.
+In case you need to rebuild the image, just type `docker-compose build` and you should be good to go.
 
-### Customising your server configuration
+### Customizing your server configuration
 
 Simply go to the `config` folder, and modify the required folders you wish.
 
@@ -78,7 +78,10 @@ Simply go to the `config` folder, and modify the required folders you wish.
 - `config/cstrk11r` is for Counter-Strike 1.1.
 - `config/tfc` is for Team Fortress Classic. 
 - `config/dmc` is for Deathmatch Classic. 
-- `config/valve` is for Half-Life. **However, since no playerbase really exists for Half-Life WON2 (people play it on STEAM instead), none of the system files have been included. If you still want to include custom data for your server, simply add whenever you wish inside the folder, and rebuild the image** 
+- `config/valve` is for Half-Life. **However, since no playerbase really exists for Half-Life WON2 (people play it on STEAM instead), none of the system files have been included. If you still want to include custom data for your server, simply add whatever you wish inside the folder, and rebuild the image** 
+
+### Am I required to set "sv_lan" to "1"?
+Nope! It's already included inside the modified `hlds_run` script, so you don't have to!
 
 -----------
 
