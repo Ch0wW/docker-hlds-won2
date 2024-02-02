@@ -21,7 +21,7 @@ There are a few communities around the World that still play Counter-Strike 1.5 
 A workaround was found since then, but I still wanted to provide a ready to use image for preservation purposes. Since Docker allows creating "*sandboxed*" environments using other versions of Linux, I created this project. 
 
 ### Features
-* Creates a barebones HLDS Environment using Debian 12 (i386).
+* Creates a barebones HLDS Environment using Debian (i386).
 * Includes all the dedicated server files in its vanilla configuration that can be configured outside the docker image.
 * Has WON2 patches, and can advertise on dedicated masterservers.
 * Includes Metamod 1.19 with AntiDLFix.
