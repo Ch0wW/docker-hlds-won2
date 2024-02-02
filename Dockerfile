@@ -18,7 +18,6 @@ RUN wget -q -O -  http://dl.4players.de/f0/4players/halflife/server/linux/hlds_l
 
 COPY install/hlds_l_3111e_update.tar.gz /server 
 RUN tar -xzf /server/hlds_l_3111e_update.tar.gz -C /server
-RUN rm /server/hlds_l_3111_full.bin
 RUN rm /server/hlds_l_3111e_update.tar.gz
 
 WORKDIR /server/hlds_l/
