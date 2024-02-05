@@ -37,10 +37,6 @@ RUN rm -rf ./cstrike
 
 USER hlds
 
-# Expose required default ports
-EXPOSE 27015
-EXPOSE 27015/udp
-
 ENV TERM xterm
 
 ENTRYPOINT ["./hlds_run"]

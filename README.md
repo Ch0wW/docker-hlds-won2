@@ -48,6 +48,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    restart: always
     volumes:
       - ./config/cstrike:/server/hlds_l/cstrike 
       - ./config/cstrk11r:/server/hlds_l/cstrk11r

@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    restart: always
     user: "1000:1000" # <- Change this to your UID:GID
     volumes:
       - ./config/cstrike:/server/hlds_l/cstrike 
