@@ -37,7 +37,7 @@ A workaround was found since then, but I still wanted to provide a ready to use 
 
 ### Installation/Usage
 
-Simply edit the `docker-compose.yml` to add or modify anything you require.
+Simply edit the `docker-compose.yml`, or copy it to `docker-compose.override.yml` to add or modify anything you require.
 
 If you need to change the port of your server, change all occurences of `27015` (= in `ports` and in the `command` sections) to the desired port of your choice.
 
@@ -55,7 +55,6 @@ services:
       - ./config/cstrk10r:/server/hlds_l/cstrk10r
       - ./config/cstrk11r:/server/hlds_l/cstrk11r
       - ./config/cstrk13:/server/hlds_l/cstrk13 
-      - ./config/cstrk14:/server/hlds_l/cstrk14
       - ./config/cstrk71:/server/hlds_l/cstrk71
       - ./config/dmc:/server/hlds_l/dmc 
       - ./config/tfc:/server/hlds_l/tfc

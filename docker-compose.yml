@@ -9,9 +9,10 @@ services:
     user: "1000:1000" # <- Change this to your UID:GID
     volumes:
       - ./config/cstrike:/server/hlds_l/cstrike 
+      - ./config/cstrk10r:/server/hlds_l/cstrk10r
       - ./config/cstrk11r:/server/hlds_l/cstrk11r
       - ./config/cstrk13:/server/hlds_l/cstrk13 
-      - ./config/cstrk14:/server/hlds_l/cstrk14
+      - ./config/cstrk71:/server/hlds_l/cstrk71
       - ./config/dmc:/server/hlds_l/dmc 
       - ./config/tfc:/server/hlds_l/tfc
     ports:
