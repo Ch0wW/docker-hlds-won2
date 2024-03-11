@@ -3,7 +3,7 @@
 [![](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://patreon.baseq.fr)
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P27UZHV)
 
-This project generates a Docker image that automates setting up a Half-Life dedicated server, version 1.1.1.0, using the WON2 protocol. This docker image also includes several popular mods that are still played using this version which are Counter-Strike 1.5, 1.4, 1.3, 1.1, 1.0, Beta 7.1, Team Fortress Classic, and Deathmatch Classic.
+This project generates a Docker image that automates setting up a Half-Life dedicated server, version 1.1.1.0, using the WON2 protocol. This docker image also includes several popular mods that are still played using this version which are Counter-Strike 1.5, 1.3, 1.1, 1.0, Beta 7.1, Team Fortress Classic, and Deathmatch Classic.
 
 #### Related projects
 - [Docker image for HLDS 1.0.1.6](https://github.com/Ch0wW/docker-hlds-won2-1016)
@@ -28,7 +28,6 @@ A workaround was found since then, but I still wanted to provide a ready to use 
 
 ### Included mods
 - Counter-Strike 1.5 (retail)
-- Counter-Strike 1.4 (retail)
 - Counter-Strike 1.3 (retail)
 - Counter-Strike 1.1 (retail with patch 1.1c)
 - Counter-Strike 1.0 (retail)
@@ -109,7 +108,6 @@ services:
 Simply go to the `config` folder, and modify the required folders you wish.
 
 - `config/cstrike` is for Counter-Strike 1.5.
-- `config/cstrk14` is for Counter-Strike 1.4.
 - `config/cstrk13` is for Counter-Strike 1.3.
 - `config/cstrk11r` is for Counter-Strike 1.1.
 - `config/tfc` is for Team Fortress Classic. 
