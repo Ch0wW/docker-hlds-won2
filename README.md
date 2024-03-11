@@ -1,12 +1,12 @@
 # docker-hlds-won2
 
+[![](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://patreon.baseq.fr)
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P27UZHV)
 
-This project generates a Docker image that automates setting up a Half-Life dedicated server, version 1.1.1.0, using the WON2 protocol. This docker image also includes several popular mods that are still played using this version which are Counter-Strike 1.5, 1.4, 1.3, 1.1, Team Fortress Classic, and Deathmatch Classic.
+This project generates a Docker image that automates setting up a Half-Life dedicated server, version 1.1.1.0, using the WON2 protocol. This docker image also includes several popular mods that are still played using this version which are Counter-Strike 1.5, 1.4, 1.3, 1.1, 1.0, Beta 7.1, Team Fortress Classic, and Deathmatch Classic.
 
 #### Related projects
 - [Docker image for HLDS 1.0.1.6](https://github.com/Ch0wW/docker-hlds-won2-1016)
-- [Docker image for HLDS 1.1.0.4](https://github.com/Ch0wW/docker-hlds-won2-1104)
 
 ---------------------
 
@@ -31,6 +31,8 @@ A workaround was found since then, but I still wanted to provide a ready to use 
 - Counter-Strike 1.4 (retail)
 - Counter-Strike 1.3 (retail)
 - Counter-Strike 1.1 (retail with patch 1.1c)
+- Counter-Strike 1.0 (retail)
+- Counter-Strike Beta 7.1
 - Team Fortress Classic (v1.5)
 - Deathmatch Classic
 
@@ -51,9 +53,11 @@ services:
     restart: always
     volumes:
       - ./config/cstrike:/server/hlds_l/cstrike 
+      - ./config/cstrk10r:/server/hlds_l/cstrk10r
       - ./config/cstrk11r:/server/hlds_l/cstrk11r
       - ./config/cstrk13:/server/hlds_l/cstrk13 
       - ./config/cstrk14:/server/hlds_l/cstrk14
+      - ./config/cstrk71:/server/hlds_l/cstrk71
       - ./config/dmc:/server/hlds_l/dmc 
       - ./config/tfc:/server/hlds_l/tfc
     ports:
@@ -68,6 +72,37 @@ services:
 Once done, just execute `docker-compose up` to make sure everything works as intended, and you should be good to go. Change also the `user` token so that it is checking with the user and group running the container, to avoid upload issues or potential permission problems.
 
 In case you need to rebuild the image, just type `docker-compose build` and you should be good to go.
+
+### Important information !
+
+If you desire to host a Counter-Strike Beta 7.1, 1.0, 1.1, 1.3, there will be a command **you will be required to add** at the end of your `command` subsection:
+
+```
++localinfo mm_gamedll "dlls/cs_i386.so"
+```
+
+Example with a Counter-Strike 1.3 server:
+
+```yml
+version: "3.0"
+
+services:
+  hlds:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./config/cstrk13:/server/hlds_l/cstrk13 
+    ports:
+      - 27015:27015
+      - 27015:27015/udp
+    command:
+      - -port 27015 -game cstrk13 +map de_dust2 +maxplayers 16 +localinfo mm_gamedll "dlls/cs_i386.so"
+    security_opt:
+      - no-new-privileges:true
+```
+
 
 ### Customizing your server configuration
 
