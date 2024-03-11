@@ -109,6 +109,8 @@ Simply go to the `config` folder, and modify the required folders you wish.
 - `config/cstrike` is for Counter-Strike 1.5.
 - `config/cstrk13` is for Counter-Strike 1.3.
 - `config/cstrk11r` is for Counter-Strike 1.1.
+- `config/cstrk10r` is for Counter-Strike 1.0.
+- `config/cstrk71` is for Counter-Strike Beta 7.1.
 - `config/tfc` is for Team Fortress Classic. 
 - `config/dmc` is for Deathmatch Classic. 
 - `config/valve` is for Half-Life. **However, since no playerbase really exists for Half-Life WON2 (people play it on STEAM instead), none of the system files have been included. If you still want to include custom data for your server, simply add whatever you wish inside the folder, and rebuild the image** 
