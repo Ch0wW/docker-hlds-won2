@@ -46,9 +46,7 @@ version: "3.0"
 
 services:
   hlds:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: docker-hlds-won2-hlds
     restart: always
     volumes:
       - ./config/cstrike:/server/hlds_l/cstrike 
@@ -86,9 +84,7 @@ version: "3.0"
 
 services:
   hlds:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: docker-hlds-won2-hlds
     restart: always
     volumes:
       - ./config/cstrk13:/server/hlds_l/cstrk13 

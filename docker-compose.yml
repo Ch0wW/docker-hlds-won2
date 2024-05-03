@@ -2,9 +2,7 @@ version: "3.0"
 
 services:
   hlds:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: docker-hlds-won2-hlds
     restart: always
     user: "1000:1000" # <- Change this to your UID:GID
     volumes:
