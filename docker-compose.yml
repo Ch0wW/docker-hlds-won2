@@ -1,8 +1,15 @@
 version: "3.0"
 
 services:
+
+  # This is the base image we build
+  hlds-build:
+    build: .
+    image: "hlds1110"
+    container_name: hlds1110-build
+
   hlds:
-    image: docker-hlds-won2-hlds
+    image: "hlds1110"
     restart: always
     user: "1000:1000" # <- Change this to your UID:GID
     volumes:
@@ -19,4 +26,4 @@ services:
     command:
       - -port 27015 -game cstrike +map de_dust2 +maxplayers 16
     security_opt:
-      - no-new-privileges:true
+      - no-new-privileges:1
