@@ -12,7 +12,7 @@ RUN useradd --no-log-init --system --create-home --home-dir /server --gid hlds  
 USER hlds
 
 # 3) Install HLDS 3.1.1.1 and 3.1.1.e
-RUN wget -q -O -  http://dl.4players.de/f0/4players/halflife/server/linux/hlds_l_3111_full.bin | \
+RUN wget -q -O -  https://web.archive.org/web/20221208044729/http://dl.4players.de/f0/4players/halflife/server/linux/hlds_l_3111_full.bin | \
   tail -c+8338 | head -c121907818 | \
   tar -xzf - -C /server
 
