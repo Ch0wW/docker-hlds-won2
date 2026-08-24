@@ -1,9 +1,15 @@
 # Half-Life 1.1.1.0 (WON2/Protocol 46) Image for Docker/Podman
 
-[![](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://patreon.baseq.fr)
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P27UZHV)
+This project generates a Docker/Podman image that automates setting up a Half-Life dedicated server, version 1.1.1.0, using the WON2 protocol (also known as **Protocol 46**). This image also allows using popular mods that are still played using this version which are Counter-Strike 1.5, 1.3, 1.1, 1.0, Beta 7.1. Team Fortress Classic and Deathmatch Classic are also included as a bonus. 
 
-This project generates a Docker/Podman image that automates setting up a Half-Life dedicated server, version 1.1.1.0, using the WON2 protocol (also known as **Protocol 46**). This image also allows using popular mods that are still played using this version which are Counter-Strike 1.5, 1.3, 1.1, 1.0, Beta 7.1. Team Fortress Classic and Deathmatch Classic are also included as a bonus.
+It can also work with CS 1.6 Beta, Day of Defeat v1.0 (Retail), and Condition Zero v1.0 (Retail) as long as you have the required files (that are not distributed for legal reasons).
+
+## Disclaimer
+**I am NOT responsible if your computer, server or game client has issues upon using this repository. You are basically attempting to host an unsupported, obsolete build of Half-Life that is ~25 years old and might have serious vulnerabilities**. Despite this repository makes you able to host a server with minimal efforts, you are, in other words, on your own.
+
+## Need support?
+**I can offer you direct support in making a server for CSWON2, however this is only restricted for Gold Tier members on Patreon.**
+[![](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://patreon.baseq.fr)
 
 #### Related projects
 - [Docker/Podman image for HLDS 1.0.1.6](https://github.com/Ch0wW/docker-hlds-won2-1016)
@@ -12,17 +18,17 @@ This project generates a Docker/Podman image that automates setting up a Half-Li
 
 # Requirements
 - Basic Linux skills,
-- Either `docker` (easier to set up) **__OR__** `podman` version 5.4.2 or above (advanced but more secure).
+- Either `docker` (easier to set up) **__OR__** `podman` version 5.4.2 or above (advanced to use but way more secure).
 
 > [!TIP]
-> - We will have to create a new user for safety reasons ; **I recommend naming the freshly created user `hluser`, as that is the one I will use throughout the installation guide** ! 
+> - We will have to create a new user for safety reasons ; **I recommend you name it `hluser`, as I will use that name through the installation guide** ! 
 > - Also, we assume you are using Debian 13 as your Linux OS. If not, please adapt some commands to your needs. 
 
 ### Why making this project ?
 
-There are a few communities around the World that still play Counter-Strike 1.5 or other classic mods of Half-Life. However, I have noticed that some Linux distributions are not acting friendly with this version of HLDS due to several incompatibilities, by either having command issues, or by crashing upon startup.
+There are a few communities around the World that still play Counter-Strike 1.3, 1.5 or other classic mods of Half-Life. However, I have noticed that some Linux distributions are not acting friendly with this version of HLDS due to several incompatibilities, by either having command issues, or by crashing upon startup.
 
-A workaround was found since then, by using either Docker or Podman along with an old version of Debian 8, which allows creating "*sandboxed*" Linux environments. Since game preservation is important, I decided to provide a ready-to-use image to create a WON2 server in minutes. 
+A workaround has been found since then, by using either Docker or Podman along with an old version of Debian 8, which allows creating "*sandboxed*" Linux environments. Since game preservation is important, I decided to provide a ready-to-use image to create a WON2 server in minutes. 
 
 ### Features
 * Creates a barebones HLDS Environment using a sandboxed version of Debian 8 (i386).
@@ -59,7 +65,7 @@ su hluser
 
 3) Clone the project, and enter the project's directory.
 
-4) Build the image required for the server (will take ~5 minutes)
+4) Build the image required for the server (will take several minutes)
 ```sh
 docker build -t hlds1110:latest .
 ```
@@ -72,7 +78,13 @@ cp docker-compose.yml docker-compose.override.yml
 6) Edit `docker-compose.override.yml` to your likings.
 
 > [!CAUTION]
-> You need to set the UID/GID of the user you have created (using the command `id`), and replace it in the `user:"1000:1000"` part ; **otherwise you will have permission issues**.
+> You need to set the UID/GID of the user you have created (using the command `id`), and replace it in the `user:"1000:1000"` part ; **otherwise you will have permission issues** regarding sprays.
+>
+> For instance, if you have the following:
+> `uid=1012(hluser) gid=1013(hluser) groups=1013(hluser)`
+> 
+> You will write the following:
+> `user:"1012:1013"`
 
 >[!NOTE]
 > The commandline that is used to start the server is located in the `command` part. 
@@ -126,7 +138,7 @@ loginctl enable-linger hluser
 
 4) Clone the project, and enter the project's directory.
 
-5) We'll set proper permissions for later, so that our user `hluser` will still have access to files later on on the `config` subdirectories. This will fix new files permissions for both the container & our user, as well as allowing custom sprays to be saved.
+5) We'll set proper permissions for later, so that our user `hluser` will still have access to files later on to the `config` subdirectories. This will fix new files permissions for both the container & our user, as well as allowing custom sprays to be saved.
 ```bash
 setfacl -R -m d:u:hluser:rwx ./config/*
 setfacl -R -m u:hluser:rwx ./config/*
@@ -177,7 +189,7 @@ Volume=%h/docker-hlds-won2/config/cstrk13:/server/cstrk13:z
 Exec=-port 27272 -game cstrk13 +map cs_italy +maxplayers 32 +localinfo mm_gamedll "dlls/cs_i386.so"
 
 [Service]
-Restart=on-failure
+Restart=always
 TimeoutSec=10
 
 [Install]
@@ -218,23 +230,31 @@ Simply go to the `config` folder, and modify the required folders you wish.
 # Frequently Asked Questions
 
 ### Does this work with CS Beta 4.0 or very old betas?
-❌ **NO** . However, [this Docker/Podman image for HLDS 1.0.1.6](https://github.com/Ch0wW/docker-hlds-won2-1016) can be used instead, as it supports a handful builds of Counter-Strike betas that worked on Linux.
+❌ **NO**, as this is incompatible. However, [this Docker/Podman image for HLDS 1.0.1.6](https://github.com/Ch0wW/docker-hlds-won2-1016) can be used instead, as it supports a handful builds of Counter-Strike betas that worked on Linux.
+
+### Does it work with ARM servers?
+❌ **NO**. You need a x64 server, which is what most servers provide. An ARM->x86 emulator might work, but is entirely outside the scope of this project.
 
 ### Am I required to set "sv_lan" to "1"?
 ❌ **No need to** ! It's already included inside the modified `hlds_run` script !
 
-### Does this project have bots ?
-❌ **Not at all**. You are free to install PodBOT or YAPB manually if you desire.
+### Does this project have bots?
+❌ **Not at all**, since it is outside the scope of this project. You are free to install PodBOT or YAPB manually if you desire.
 
-### What version of AMXX can I use ? Because the latest version doesn't work...
-You need to use AMXX 1.8.2 or lower. For easier searches, I included inside `install/extras` the latest supported version of AMXX.
+### What version of AMXX can I use? Because the latest version doesn't work...
+You need to use AMXX 1.8.2 or lower. For easier searches, I included that version of AMXX inside `install/extras`.
 
-### How can I control my server remotely ?
-You will need to set up a RCON password within your `server.cfg` file, as there's no way to directly control your HLDS container. (`rcon_password "mypassword"`)
+### How can I control my server remotely?
+You will need to set up a RCON password within your `server.cfg` file, as there's no easy way to directly control your HLDS container. (`rcon_password "mypassword"`)
+
+### Can you set me up a server?
+❌ **I can**, but I offer direct support on Gold Tier members on Patreon only. Please note you still need to rent or own a server for it.
+
+### I've heard it's so easy to cheat using a modified binary, but can you block that?
+✅ **You can**, however it will require AMXX (included) and a very specific plugin (not included as of now, as a modern rewrite is in the works).
 
 -----------
 
 This project uses files copyrighted by VALVe. 
 
 [![](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://patreon.baseq.fr)
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P27UZHV)

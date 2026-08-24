@@ -22,7 +22,7 @@ Volume=%h/docker-hlds-won2/config/tfc:/server/tfc:z
 Exec=-port 27015 -game cstrike +map de_dust2 +maxplayers 16
 
 [Service]
-Restart=on-failure
+Restart=always
 TimeoutSec=10
 
 [Install]
