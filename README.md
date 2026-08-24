@@ -5,14 +5,16 @@ This project generates a Docker/Podman image that automates setting up a Half-Li
 It can also work with CS 1.6 Beta, Day of Defeat v1.0 (Retail), and Condition Zero v1.0 (Retail) as long as you have the required files (that are not distributed for legal reasons).
 
 ## Disclaimer
-**I am NOT responsible if your computer, server or game client has issues upon using this repository. You are basically attempting to host an unsupported, obsolete build of Half-Life that is ~25 years old and might have serious vulnerabilities**. Despite this repository makes you able to host a server with minimal efforts, you are, in other words, on your own.
+**I am NOT responsible if your computer, server or game client has issues upon using this repository. You are basically attempting to host an unsupported, obsolete build of Half-Life that is ~25 years old and might have serious vulnerabilities**. This repository makes you able to host a server with minimal efforts, but you are, in other words, on your own.
 
 ## Need support?
 **I can offer you direct support in making a server for CSWON2, however this is only restricted for Gold Tier members on Patreon.**
+
 [![](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://patreon.baseq.fr)
 
 #### Related projects
 - [Docker/Podman image for HLDS 1.0.1.6](https://github.com/Ch0wW/docker-hlds-won2-1016)
+- [Repository for Counter-Strike builds before 1.6](https://github.com/Ch0wW/counterstrike-betas)
 
 ---------------------
 
@@ -22,7 +24,7 @@ It can also work with CS 1.6 Beta, Day of Defeat v1.0 (Retail), and Condition Ze
 
 > [!TIP]
 > - We will have to create a new user for safety reasons ; **I recommend you name it `hluser`, as I will use that name through the installation guide** ! 
-> - Also, we assume you are using Debian 13 as your Linux OS. If not, please adapt some commands to your needs. 
+> - Also, we assume you are using Debian 13 as your Linux distribution. If not, please adapt some commands to your needs. 
 
 ### Why making this project ?
 
@@ -97,7 +99,7 @@ If you need to change the port of your server, change the `-port 27015` paramete
  +localinfo mm_gamedll "dlls/cs_i386.so"
 ```
 
-For instance, here is a `docker-compose.override.yml` file which will create a CS 1.3 server on de_dust2 on port 27272 with 32 players slots: 
+For instance, here is a `docker-compose.override.yml` file which will create a CS 1.3 server on de_dust2 on port 27272 with 32 player slots: 
 
 ```yml
 services:
@@ -134,9 +136,9 @@ usermod --add-subuids 100000-165535 --add-subgids 100000-165535 hluser
 loginctl enable-linger hluser
 ```
 
-3) In a **new SSH connection**, connect as `hluser`.
+3) In a **new SSH connection**, connect as `hluser`. if you're not in your home directory already, type the following: `cd ~`
 
-4) Clone the project, and enter the project's directory.
+4) Clone the project, and enter the project's directory. (`git clone https://github.com/Ch0wW/docker-hlds-won2.git`)
 
 5) We'll set proper permissions for later, so that our user `hluser` will still have access to files later on to the `config` subdirectories. This will fix new files permissions for both the container & our user, as well as allowing custom sprays to be saved.
 ```bash
@@ -168,7 +170,7 @@ If you need to change the port of your server, change the `-port 27015` paramete
  +localinfo mm_gamedll "dlls/cs_i386.so"
 ```
 
-For instance, here is a container file (= *quadlet*) which will create a CS 1.3 server on cs_italy on port 27272 with 32 players slots: 
+For instance, here is a container file (= *quadlet*) which will create a CS 1.3 server on cs_italy on port 27272 with 32 player slots: 
 
 ```ini
 [Unit]
@@ -204,7 +206,7 @@ systemctl --user start hlds1110
 
 > [!NOTE]
 > - You will have to make one container file per server. 
-> - If the service is not properly detected by podman/systemd, you can have a basic idea of what's wrong with this command : `/usr/libexec/podman/quadlet -dryrun -user`
+> - If the service is not properly detected by podman/systemd, you can have a basic idea of what's wrong by typing the following command : `/usr/libexec/podman/quadlet -dryrun -user`
 
 > [!WARNING]
 > Due to how systemd works, if you changed anything within the quadlet, or created a new quadlet, you will have to type `systemctl --user daemon-reload` in order to refresh the files. 
@@ -232,6 +234,12 @@ Simply go to the `config` folder, and modify the required folders you wish.
 ### Does this work with CS Beta 4.0 or very old betas?
 ❌ **NO**, as this is incompatible. However, [this Docker/Podman image for HLDS 1.0.1.6](https://github.com/Ch0wW/docker-hlds-won2-1016) can be used instead, as it supports a handful builds of Counter-Strike betas that worked on Linux.
 
+### Why are you naming the CS 1.3 folder "cstrk13" or "cstrk11r" for CS 1.1 instead of "cstrike"?
+I am using the new [community namings](https://github.com/Ch0wW/counterstrike-betas) that has been agreed with the WON communities in order to play all versions of Counter-Strike WON without the need to rename the folder every single time. Modern client packages should use the updated folder namings already, but older packages might not.
+
+### Can I connect using STEAM?
+❌ **NO**. Steam uses a more updated protocol that is fully incompatible with this build of HLDS. You will need to install Half-Life Retail and patch it to version 1.1.1.0, or use a package built by the community.
+
 ### Does it work with ARM servers?
 ❌ **NO**. You need a x64 server, which is what most servers provide. An ARM->x86 emulator might work, but is entirely outside the scope of this project.
 
@@ -248,7 +256,7 @@ You need to use AMXX 1.8.2 or lower. For easier searches, I included that versio
 You will need to set up a RCON password within your `server.cfg` file, as there's no easy way to directly control your HLDS container. (`rcon_password "mypassword"`)
 
 ### Can you set me up a server?
-❌ **I can**, but I offer direct support on Gold Tier members on Patreon only. Please note you still need to rent or own a server for it.
+🔒 **I can**, but I offer direct support for Gold Tier members on Patreon only. Please note you still need to rent or own a server beforehand, something I can't do for you.
 
 ### I've heard it's so easy to cheat using a modified binary, but can you block that?
 ✅ **You can**, however it will require AMXX (included) and a very specific plugin (not included as of now, as a modern rewrite is in the works).
