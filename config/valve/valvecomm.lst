@@ -23,6 +23,7 @@ Auth
 
 Master
 {
+	hlmaster.baseq.fr:27010
 	master.won2.steamlessproject.nl:27010
 	master4.won2.steamlessproject.nl:27010
 	master2.won2.steamlessproject.nl:27010
